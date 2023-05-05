@@ -1,29 +1,68 @@
+% mnras_template.tex 
+%
+% LaTeX template for creating an MNRAS paper
+%
+% v3.0 released 14 May 2015
+% (version numbers match those of mnras.cls)
+%
+% Copyright (C) Royal Astronomical Society 2015
+% Authors:
+% Keith T. Smith (Royal Astronomical Society)
+
+% Change log
+%
+% v3.0 May 2015
+%    Renamed to match the new package name
+%    Version number matches mnras.cls
+%    A few minor tweaks to wording
+% v1.0 September 2013
+%    Beta testing only - never publicly released
+%    First version: a simple (ish) template for creating an MNRAS paper
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic setup. Most papers should leave these options alone.
 \documentclass[fleqn,usenatbib]{mnras}
 
-\usepackage{layouts}
-\usepackage{mathptmx}
+% MNRAS is set in Times font. If you don't have this installed (most LaTeX
+% installations will be fine) or prefer the old Computer Modern fonts, comment
+% out the following line
+\usepackage{newtxtext,newtxmath}
+% Depending on your LaTeX fonts installation, you might get better results with one of these:
+%\usepackage{mathptmx}
+%\usepackage{txfonts}
+
+% Use vector fonts, so it zooms properly in on-screen viewing software
+% Don't change these lines unless you know what you are doing
 \usepackage[T1]{fontenc}
 
+% Allow "Thomas van Noord" and "Simon de Laguarde" and alike to be sorted by "N" and "L" etc. in the bibliography.
+% Write the name in the bibliography as "\VAN{Noord}{Van}{van} Noord, Thomas"
 \DeclareRobustCommand{\VAN}[3]{#2}
 \let\VANthebibliography\thebibliography
 \def\thebibliography{\DeclareRobustCommand{\VAN}[3]{##3}\VANthebibliography}
 
+
+%%%%% AUTHORS - PLACE YOUR OWN PACKAGES HERE %%%%%
+
+% Only include extra packages if you really need them. Common packages are:
 \usepackage{graphicx}	% Including figure files
-\graphicspath{{figures/}}
 \usepackage{amsmath}	% Advanced maths commands
-\usepackage{amssymb}	% Extra maths symbols
-\usepackage{amstext}
-\usepackage{siunitx}
-\sisetup{
-separate-uncertainty,  
-range-units = brackets}  
-\usepackage{mathtools}
-\usepackage{color}
-\usepackage{twoopt}
-\usepackage{hyperref} 
-\usepackage{afterpage}
-\usepackage{silence}
-\usepackage{newtxtext,newtxmath}
+% \usepackage{amssymb}	% Extra maths symbols
+\usepackage{multirow}
+
+\graphicspath{{./}{figures/}}
+
+\newcommand{\angstrom}{\mbox{\normalfont\AA}}
+\newcommand\km{\textcolor{magenta}}
+\newcommand\new[1]{\textbf{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% AUTHORS - PLACE YOUR OWN COMMANDS HERE %%%%%
+
+% Please keep new commands to a minimum, and use \newcommand not \def to avoid
+% overwriting existing commands. Example:
+%\newcommand{\pcm}{\,cm$^{-2}$}	% per cm-squared
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -31,21 +70,19 @@ range-units = brackets}
 
 % Title of the paper, and the short title which is used in the headers.
 % Keep the title short and informative.
-\title[Observability of Transition Discs]{Observability of Photoevaporation Signatures in the Dust Continuum Emission of Transition Discs}
+\title[Low accretors and disc dispersal]{Lowest accreting protoplanetary discs as diagnostic of disc dispersal}
 
 % The list of authors, and the short list which is used in the headers.
 % If you need two or more lines of authors, add an extra line using \newauthor
-\author[Picogna et al. 2023]{
-Giovanni Picogna$^{1}$,\thanks{E-mail: picogna@usm.lmu.de}
-Carolina Sch{{\"a}}fer$^{1}$,
-Barbara Ercolano$^{1}$,
-Christian Rab$^{1}$,
-Rafael Franz$^{1}$,
-and Mat\'ias G\'arate$^{2}$
+\author[B. Ercolano et al.]{
+Barbara Ercolano,$^{1,2}$\thanks{E-mail: ercolano@usm.lmu.de}
+Giovanni Picogna$^{1}$
+and Kristina Monsch$^{3}$
 \\
 % List of institutions
-$^{1}$Universit\"ats-Sternwarte, Ludwig-Maximilians-Universit\"at M\"unchen, Scheinerstr. 1, 81679 M\"unchen, Germany\\
-$^{2}$Max-Planck-Institut f\"ur Astronomie, K\"onigstuhl 17, 69117, Heidelberg, Germany
+$^{1}$ University Observatory, Faculty of Physics, Ludwig-Maximilians-Universit\"at M\"unchen, Scheinerstr. 1, 81679 Munich, Germany\\
+$^{2}$ Exzellenzcluster `Origins', Boltzmannstr. 2, 85748 Garching, Germany\\
+$^{3}$ Harvard-Smithsonian Center for Astrophysics, 60 Garden Street, Cambridge MA 02138, USA
 }
 
 % These dates will be filled out by the publisher
@@ -62,13 +99,14 @@ $^{2}$Max-Planck-Institut f\"ur Astronomie, K\"onigstuhl 17, 69117, Heidelberg, 
 
 % Abstract of the paper
 \begin{abstract}
-Photoevaporative disc winds play a key role in our understanding of circumstellar disc evolution, especially in the final stages, and they might affect the planet formation process and the final location of planets. The study of transition discs (i.e. discs with a central dust cavity) is central for our understanding of the photoevaporation process and disc dispersal. However, we need to distinguish cavities created by photoevaporation from those created by giant planets. Theoretical models are necessary to identify possible observational signatures of the two different processes, and models to find the differences between the two processes are still lacking. In this paper we study a sample of transition discs obtained from radiation-hydrodynamic simulations of internally photoevaporated discs, and focus on the dust dynamics relevant for current ALMA observations. We then compared our results with gaps opened by super Earths/giant planets, finding that the photoevaporated cavity steepness depends mildly on gap size, and it is similar to that of a \SI{1}{M_J} mass planet. However, the dust density drops less rapidly inside the photoevaporated cavity compared to the planetary case due to the less efficient dust filtering. This effect is visible in the resulting spectral index, which shows a larger spectral index at the cavity edge and a shallower increase inside it with respect to the planetary case. The combination of cavity steepness and spectral index might reveal the true nature of transition discs.
+
+The lowest accreting ..... 
 \end{abstract}
 
 % Select between one and six entries from the list of approved keywords.
 % Don't make up new ones.
 \begin{keywords}
-hydrodynamics -- accretion,  accretion discs -– protoplanetary discs –- circumstellar matter –- stars:pre-main-sequence –- X-rays: stars 
+keyword1 -- keyword2 -- keyword3
 \end{keywords}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -77,263 +115,306 @@ hydrodynamics -- accretion,  accretion discs -– protoplanetary discs –- circ
 
 \section{Introduction}
 
-Transition discs are defined as circumstellar discs with a dust inner cavity. Historically, this class of discs has been detected by studying their spectral energy distribution (SED), which showed a dip in the near-infrared part of the spectra, explainable by a lack of warm dust emitting close to the central star \citep{Strom1989}. With the advent of high-resolution imaging of protoplanetary discs in the (sub)millimeter continuum emission, especially thanks to the Atacama Large Millimetre Array (ALMA), we are now able to probe directly the dust content in the inner regions of planet forming discs, and detect potential cavities.
+The disc fraction of accreting pre-main-sequence stars decreases with the age of the population \citep[see e.g.][]{Mamajek2009}. At the same time, there is a population of star bearing discs where the accretion has stopped.
+The transition between accreting and non-accreting stars plays an important role in determining the planetary systems forming in its accretion disc, as the speed of this process can cut out the supply for forming giant planets and halt their migration \citep[see e.g.][]{Monsch2019}\ldots
+%Describe importance of determining the cause of disc dispersal. Connection to the planet formation process\ldots
 
-There are two leading theories to explain this class of discs.
-The first is the theory of disc photoevaporation which has its foundation in the seminal work by \cite{Hollenbach1994} and explains the observed fraction of transition discs ($\sim 10\%$ of the entire disc population from SED studies) in a "two-time-scale" scenario \citep{Clarke2001}. The X-ray and UV radiation from the central star drives a constant thermal wind from the cicumstellar disc that, where and when eventually the accretion rate drops below the wind mass-loss rate, creates a gapped disc that is dispersed on a short timescale, which is roughly $1/10$-th of the total disc life-time \citep{Alexander2014,Ercolano2017}.
-The second theory of transition disc formation invokes the presence of super-Earth/giant planets that can halt the flux of dust from the outer disc by creating a pressure bump outside their location, and lead to a depleted inner dust disc. This second scenario would explain the observed fraction of transition discs as a probability of $10\%$ of forming a giant planet on a wide orbit \citep{Duffell2015,Dong2016}
+%Observations have shown that the disc frequency and the fraction of accreting pre-main-sequence stars decrease with the age of the population and that some stars appear to have discs while their accretion has stopped. 
+%Still, it is unclear how disc-bearing stars stop their accretion.
 
-Recent ALMA observations have questioned this fraction of transition discs by observing several unresolved dust cavities where the SED showed a dip in its near-infrared emission, and vice versa, showing dust cavities in discs where the SED didn't show any characteristic features \citep{Andrews2018,Kurtovic2021,vanderMarel2022}.
-The fraction of giant planet on wide orbits seems to be also much smaller than the $10 \%$ value necessary to explain the SED population \citep{Nielsen2019,Vigan2021}.
+\citet{Thanathibodee2022} recently looked for an accretion signatures in disc-bearing stars previously thought to be non-accretors, using the He I $\lambda10830 \angstrom$ line. This high excitation line allowed them to probe material in the innermost regions of protostellar discs, possibly detecting accretion streamers.
+They found that a large fraction of this sample (at least $20-30\%$) indeed shows signs of accretion via strong red-shifted absorption consistent with free-fall velocities, preferentially at young ages and almost independently of the stellar mass.
+The accretion rates were then determined independently by fitting the H-$\alpha$ profiles, of a sub-sample of these stars, using magnetospheric accretion models \citep{Thanathibodee2023}.
+Interestingly, although the statistics was very low (24 sources), the authors derived a minimum accretion rate of the order of $10^{-10}$ M$_\odot$ yr$^{-1}$, even though their method was able to detect rates $5$ to $10$ times lower, hinting some physical rather than selection limit.
+They further suggested that, since this rate is similar to the mass-loss rate provided by classical models of EUV photoevaporation \citep[see e.g.][]{Alexander2007}, this mechanism of disc dispersal is a viable candidate to explain the transition between an accreting and non-accreting disc.
 
-There have been several theoretical studies to identify the region of the parameter space that the two different models can explain, with disc photoevaporation able to create small cavities with low accretion rate onto the central star, and giant planets on the other side of the spectra, creating mainly cavities where the accretion rate onto the central star is still unperturbed \citep{Ercolano2017}.
-However, recent models have questioned this view pushing the region of the parameter space explainable by disc photoevaporation both to larger cavity sizes and to higher accretion rates \citep{Picogna2019,Ercolano2018,Garate2021}.
+In this paper we test this hypothesis by producing synthetic populations of viscously evolving discs dispersed by photoevaporation, testing the different scenarios of EUV- and X-ray photoevaporation. 
 
-The best way to distinguish between the two mechanisms, if they don't occur in combination, is possibly trough dust observations. \citet{Franz2022} showed that dust entrained in photoevaporative winds might leave observable features that can be detected in the near future.
-Another avenue is to understand the effect of a dust cavity opened by photoevaporation on bigger dust particles settled towards the disc mid-plane and directly observable with modern facilities like ALMA.
-In this work we study how disc photoevaporation affects the dust distribution close to the mid-plane and the cavity edge, and compare the results with literature in order to understand the characteristic fingerprints of photoevaporation and how to distinguish them from a planetary scenario.
-
-In Section~\ref{sec:methods} we lay down the methods adopted to perform 2D dusty hydrodynamic simulations of transition discs photoevaporated from the central star, and the post-processing with Monte Carlo radiative transfer simulations. In Section~\ref{sec:results} we present the main results of our work, which we then compare with previous literature to understand its characteristic features in Section~\ref{sec:discussion}.
-Finally, in Section~\ref{sec:conclusions} we present the main conclusions.
+In Section~\ref{sec:methods} we describe the method adopted, and in Section~\ref{sec:results} we present the result and draw the conclusions in Section~\ref{sec:conclusions}.
 
 \section{Methods}\label{sec:methods}
 
-    In this section we present our radiation-hydrodynamic model for transition discs which includes X-ray photoevaporation from the central star and dust dynamics. When an equilibrium configuration is reached, we extract the radial and vertical dust distribution and derive synthetic images from detailed radiative transfer calculations.
+We use the one-dimensional viscous evolution code \textsc{SPOCK} \citep{Ercolano2015} which evolves the gas following
+\begin{equation}
+    \frac{\partial{\Sigma}}{\partial{t}} = \frac{1}{R}\frac{\partial}{\partial{R}}\left[3R^{1/2}\frac{\partial}{\partial{R}}(\nu\Sigma R^{1/2})\right] - \dot{\Sigma}_w(R,t)\,,
+\end{equation}
+where the first term on the right hand side describes the viscous disc evolution \citep{LyndenBell1974}, and the second one is a sink term modelling the mass-loss due to internal disc photoevaporation.
 
-    \subsection{Hydrodynamics}\label{sec:hydro}
+We consider either an EUV or X-ray mass-loss rate internal photoevaporation profiles as they are well-studied in literature, and simple 1D presciptions of the disc mass-loss rates are provided.
 
-        We used the hydro-code {\sc pluto} \citep{Mignone2007} with the modifications of \citet{Picogna2019} to account for the stellar X(EUV) irradiation. 
-        We adopted a spherical coordinate system centred onto the star.
-        In this reference frame we can compute, without increasing the computational load, the column density from the central star at each cell.
-        Using the column density and the disc local properties we determine the temperature in the bulk of the disc and in the disc atmosphere as explained in Sec.~\ref{sec:mocassin}.
-        The initial density structure was taken from the \textbf{D’Alessio Irradiated Accretion Disc (\textsc{diad}) radiative transfer models \citep{DAlessio1998,DAlessio1999,DAlessio2001,DAlessio2005,DAlessio2006}} code that provide also the gas temperature in the bulk of the disc \textbf{that best fit the median spectral energy distribution (SED) in Taurus. For more details, the reader is referred to \citet{Picogna2019}.} A cavity was \textbf{then} created by an exponential cut-off of the density
-        \begin{equation}
-          \rho = \rho_0 \cdot \exp{\left[\frac{2\pi(R-R_\textrm{cav})}{\Delta_\textrm{gap}}\right]}\, \textrm{for}\, R \leq R_\textrm{cav},
-        \end{equation}
-        where \textbf{$\rho_0 = \rho(R_\mathrm{cav})$ is the initial density at the cavity location}, $R$ is the cylindrical radius, \textbf{$\Delta_\textrm{gap} = 1$ au} is the width of the cavity wall, and $R_\textrm{cav}$ is the cavity radius.
-        We explore three different transition disc setups with cavity sizes of $10$, $20$, and $30$ au respectively.
-        The main physical properties of the numerical simulations are reported in Table~\ref{tab:PlutoPars}.
-           
-        \begin{table}
-        \centering
-        \begin{tabular}{c c c c c c c}
-         \hline
-         $L_x$ & $M_\star$ & $R_\textrm{cav}$ & $\alpha$ & $s$ & $\rho_s$\\ 
-         \hline
-         erg/s & $M_\odot$ & au & & cm & g cm$^3$\\
-         \hline
-         $2\cdot 10^{30}$ & $0.7$ & $10, 20, 30$ & $0.001$ & 0.01,0.1,1,10 & 1 \\ 
+\subsection{X-ray photoevaporation}
+
+The XEUV surface mass-loss rate is given following \citet{Picogna2019}
+\begin{eqnarray}
+  \label{eq:surf1}
+  \dot{\Sigma}_\mathrm{XEUV}(R) &= \ln{(10)} \bigg(\frac{6\, a\, \ln{(R)}^5}{R\, \ln{(10)}^6} +
+  \frac{5\, b\, \ln{(R)}^4}{R\, \ln{(10)}^5} +
+  \frac{4\, c\, \ln{(R)}^3}{R\, \ln{(10)}^4} + \\ \nonumber
+  &\frac{3\, d\, \ln{(R)}^2}{R\, \ln{(10)}^3} +
+  \frac{2\, e\, \ln{(R)}}{R\, \ln{(10)}^2} + \\ \nonumber
+  &\frac{f}{R\, \ln{(10)}}\bigg)
+  \frac{\dot{\mathrm{M}}_\mathrm{XEUV}(R)}{2\pi\, R} \,,
+\end{eqnarray}
+where
+\begin{equation}
+\label{eq:surf2}
+  \frac{\dot{\mathrm{M}}_\mathrm{XEUV}(R)}{\dot{\mathrm{M}}_\mathrm{XEUV}(M_\star, L_{X,\mathrm{soft}})} = 10^{a\log{R}^6 + b\log{R}^5 + c\log{R}^4 + d\log{R}^3 + e\log{R}^2 + f\log{R} + g}
+\end{equation}
+and the parameters for the different stellar masses are given in Table~\ref{tab:fit}.
+The mass-loss rate as a function of X-ray luminosity and stellar mass is given by \citep{Ercolano2021,Picogna2021}
+\begin{equation}
+    \dot{M}_\mathrm{XEUV}(M_\star, L_{X,\mathrm{soft}}) = \dot{M}_\mathrm{XEUV}(M_\star)\frac{\dot{M}_\mathrm{XEUV}(L_{X,\mathrm{soft}})}{\dot{M}_\mathrm{XEUV}(L_{X,\mathrm{soft, mean}})} \,,
+\end{equation}
+where the mass-loss rate as a function of stellar mass is 
+\begin{equation}
+    \dot{M}_\mathrm{XEUV}(M_\star) = 3.93\times10^{-8} \left(\frac{M_\star}{M_\odot}\right)
+\end{equation}
+and the dependance on the soft component of the X-ray luminosity is given by
+\begin{equation}
+    \dot{M}_\mathrm{XEUV}(L_{X,\mathrm{soft}}) = 10^{a_L \exp{\left(\frac{(\ln(\log(L_{X,\mathrm{soft}})-b_L)^2}{c_L}\right)+d_L}} \,,
+\end{equation}
+where $a_L = -1.947\cdot 10^{17}$, $b_L = -1.572\cdot 10^{-4}$, $c_L = -0.2866$, $d_L = -6.694$, the soft component of the X-ray luminosity is given by
+\begin{equation}
+    L_{X,\mathrm{soft}} = 10^{0.95 \log{(L_X)}+1.19} \,,
+\end{equation}
+and the mean component of the X-ray luminosity $L_{X,\mathrm{soft, mean}}$ is the soft X-ray luminosity of a star with a total X-ray luminosity given by the observational relation between stellar mass and X-ray luminosity \citep[see eq.~\ref{eq:LxMstar}, ][]{Gudel2007}.
+
+\begin{table*}
+\caption{Parameters for the Surface density profiles in equations~\ref{eq:surf1},\ref{eq:surf2}}
+\label{tab:fit}
+\centering
+\begin{tabular}{c c c c c c c c c}
+\hline
+$\mathrm{M}_\star$ [$M_\odot$] & a & b & c & d & e & f & g & $\dot{\mathrm{M}}_w$ \\
+\hline
+\hline
+   $1.0$ & $-0.6344$ & $6.3587$ & $-26.1445$ & $56.4477$ & $-67.7403$ & $43.9212$ & $-13.2316$ & $3.86446$\\
+   $0.5$ & $-1.2320$ & $10.8505$ & $-38.6939$ & $71.2489$ & $-71.4279$ & $37.8707$ & $-9.3508$ & $1.9046$\\
+   $0.3$ & $-1.3206$ & $13.0475$ & $-53.6990$ & $117.6027$ & $-144.3769$ & $94.7854$ & $-26.7363$ & $1.17156$\\
+   $0.1$ & $-3.8337$ & $22.9100$ & $-55.1282$ & $67.8919$ & $-45.0138$ & $16.2977$ & $-3.5426$ & $0.37588$\\
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{EUV photoevaporation}
+
+We divided the EUV surface mass-loss rate in its diffuse and direct components following \citet{Alexander2007}
+\begin{equation}
+    \dot{\Sigma}_\mathrm{EUV}(R) = \dot{\Sigma}_\mathrm{diffuse}(R) +  \dot{\Sigma}_\mathrm{direct}(R,t)\cdot f(R) \,,
+\end{equation}
+where $f(R) = 1+\exp{(-\frac{R-R_\mathrm{in}}{H_\mathrm{in}})}$ is a smoothing function to avoid numerical problems close to the disc inner edge, $R_\mathrm{in}(t)$ is the radius of the inner disc edge, $H_\mathrm{in}(t)$ is the disc scale height at the inner edge.
+
+The diffuse component of the EUV surface mass-loss rate is then given by
+\begin{equation}
+    \dot{\Sigma}_\mathrm{diffuse}(R) = 2n_0(R)u_l(R)\mu m_H \\ \mathrm{for }\ R\geq 0.1 R_g\,,
+\end{equation}
+where the density at the base of the flow is
+\begin{equation}
+    n_0(R) = C_1 \left(\frac{3\Phi_\mathrm{diff}}{4\pi\alpha_B R_g^3}\right)^{1/2} \left(\frac{2}{(R/R_g)^{15/2}+(R/R_g)^{25/2}}\right)^{1/5} \,,
+\end{equation}
+the wind launch velocity 
+\begin{equation}
+    u_l(R) = c_s A \exp{\left[B\left(\frac{R}{R_g} - 0.1\right)\right]} \left(\frac{R}{R_g} - 0.1\right)^D \,,
+\end{equation}
+$\mu = 1.35$ the mean molecular weight of the ionized gas, $m_H$ the mass of a hydrogen atom, $C_1 \simeq 0.14$, $R_g$ the gravitational radius, $\alpha_B = 2.6\cdot10^{-13}$ is the Case B recombination coefficient for atomic hydrogen at $10^4$ K, $c_s = 10$ km $\mathrm{s}^{-1}$ the sound speed of the ionized gas, $A=0.3423$, $B=0.3612$, $D=0.2457$, and the stellar diffuse ionizing EUV flux
+\begin{equation}
+    \Phi_\mathrm{diff} = 
+    \begin{cases}
+        \Phi_\mathrm{EUV}\left(\frac{R_\mathrm{thin}}{R_\mathrm{in}}\right) & \text{if } R_\mathrm{thin} < R_\mathrm{crit},\\
+        \Phi_\mathrm{EUV} & \text{otherwise},
+    \end{cases}
+\end{equation}
+where $\Phi_\mathrm{EUV}$ is the unattenuated stellar ionizing EUV flux (in photons s$^{-1}$), $R_\mathrm{thin}$ is the radius at which the disc becomes optically thin in the vertical direction
+\begin{equation}
+    \Sigma_g(R_\mathrm{thin}) = m_H \sigma_\mathrm{13.6\, eV}^{-1} \,,
+\end{equation}
+$\sigma_\mathrm{13.6\, eV} = 6.3\cdot10^{-18}$ cm$^2$ is the absorption cross-section for ionizing photons, $R_\mathrm{crit}$ is the critical radius at which the gap opens
+\begin{equation}
+    R_\mathrm{crit} = 1.4 \left(\frac{M_\star}{M_\odot}\right) \ \text{au}\,.
+\end{equation}
+
+The direct component of the EUV surface mass-loss rate (defined only for $R>R_\mathrm{in}$) is given by
+\begin{equation}
+    \dot{\Sigma}_\mathrm{direct}(R, t) = 2 C_2 \mu m_H c_s \left[\frac{\Phi_\mathrm{EUV}}{4\pi\alpha_B(H/R) R_\mathrm{in}^3(t)}\right]^{1/2} \left[\frac{R}{R_\mathrm{in}(t)}\right]^{-a} \,,
+\end{equation}
+where $C_2 = 0.235$, $a = 2.42$, $H/R$ is the disc aspect ratio.
+
+%\subsection{FUV photoevaporation}
+
+%For the FUV case there are no hydrodyamic simulations and no paremeterisations available. We follow Jennings et al. 2017, who implemented FUV photoevaporation in SPOCK. 
+
+\subsection{Population synthesis}
+
+We assume a initial stellar mass function following \citet{Kroupa2001}
+\begin{equation} \label{eq:IMF}
+    \xi(m) \propto m^{-\alpha} \,,
+\end{equation}
+where $\alpha = 1.3 \pm 0.5$ for $0.08 \leq m/M_\odot < 0.5$ and $\alpha = 2.3 \pm 0.3$ for $0.5 \leq m/M_\odot \leq 1$, from which we obtain the distribution shown in Figure~\ref{fig:stellar_masses} for a sample of 10,000 stars. The adopted weighting of the distribution based on eq.~\ref{eq:IMF} is marked with a dashed red line, and the median stellar mass value given by the dotted dashed red line is $\sim 0.3$ M$_\odot$.
+\begin{figure}
+    \includegraphics[width=0.95\columnwidth]{Mstar}
+    \caption{Histogram of the stellar mass distribution in our population synthesis, where the KDE is overplotted with a dark blue solid line, the median value of $0.3$ M$_\odot$ is marked with a dotted-dashed red line, and the adopted weigthing based on the Kroupa IMF is plotted with a dashed red line. \label{fig:stellar_masses}}
+\end{figure}
+
+\citet{Gudel2007} derived an observational relation between the median X-ray luminosities and stellar masses
+\begin{equation} \label{eq:LxMstar}
+    \log_{10}(L_{X}) = (1.54\pm0.12) \log_{10}(M_\star) + (30.31\mp0.06) \,,
+\end{equation}
+though a large spread is observed around the mean values, which becomes larger for small mass stars \citep[e.g.][]{Getman2022}.
+\citet{Kuhn2019} took a subsample of the Chandra Orion Ultradeep Project (\textsc{COUP}, \citet{Feigelson2005,Getman2005}) and stratified it in 3 stellar mass bins using the \citet{Baraffe1998} evolutionary models. From this sample one can derive a X-ray luminosity function (XLF) as a function of stellar mass, as shown in Figure~\ref{fig:XLF}, from which one can see the increase in the median X-ray luminosity as a function of stellar mass as well as the increase spreading for lower stellar masses. We then calculated the median stellar mass for the three stellar mass bins in Figure~\ref{fig:XLF} given the adopted IMF, and shifted the XLF distribution to match the given value of the stellar mass. We sampled then the X-ray luminosity given the probability density corrected for the stellar mass and obtained the X-ray luminosity distribution shown in Figure~\ref{fig:Lx} from the 10,000 sampled stellar masses, with a median value of $10^{29.4}$ erg s$^{-1}$ and a spread over 4 orders of magnitude.
+\begin{figure}
+    \includegraphics[width=0.95\columnwidth]{XLF}
+    \caption{X-ray luminosity function for a representative sample of generic young stellar objects sample of pre-main-sequence stars detected in the Chandra Orion Ultradeep Project (\textsc{COUP}; \citet{Feigelson2005,Getman2005}), stratified in 3 stellar mass bins as in \citet{Kuhn2019}. \label{fig:XLF}}
+\end{figure}
+\begin{figure}
+    \includegraphics[width=0.95\columnwidth]{Lx}
+    \caption{Histogram of the X-ray luminosity density distribution in the XEUV population synthesis, where the KDE is overplotted with a dark blue solid line and the median value of 29.4 is marked with a dotted dashed black line. \label{fig:Lx}}
+\end{figure}
+
+The EUV rates are shown to scale with the ratio of incoming ionising flux. However, there is no clear evidence on the origin of the EUV flux. Assuming that the EUV flux has the same origin as the X-ray flux we can then adopt the same scaling relation as eq.~\ref{eq:LxMstar}
+\begin{equation} \label{eq:PhiEUVMstar}
+    \log_{10}(\Phi_{EUV}) = 1.54 \log_{10}(M_\star) + 42 \,
+\end{equation}
+and adopt a small dispersion around the mean value for each stellar mass of 0.25 dex, as shown in Figure~\ref{fig:phiEUV}, which gives a range of ionizing flux from $10^{40} s^{-1}$ to $10^{42.5} s^{-1}$ and a median value of $10^{41.2} s^{-1}$.
+\begin{figure}
+    \includegraphics[width=0.95\columnwidth]{phi_EUV}
+    \caption{Histogram of the ionizing flux density distribution in the EUV population synthesis, where the KDE is overplotted with a dark blue solid line and the median value of 41.2 is marked with a dotted dashed black line. \label{fig:phiEUV}}
+\end{figure}
+
+We constrained the disc properties in order to match the observed mean disc lifetime of 2-3 Myr \citep[see e.g.][]{Ribas2014}. For the EUV profile we sampled the viscous $\alpha$ and scaling radius $R_1$ for disc masses ranging from $0.1$ to $0.01 M_\star$ for a typical star with median values from our distribution ($M_\star = 0.3 M_\odot$, $\Phi_\mathrm{EUV} = 10^{41.2}$ s$^{-1}$) and then we selected only the ones that were giving a correct disc life-time and obtained a best linear fit given by:
+\begin{equation}
+    R_1 = 60.4 \alpha + 3009.7 M_d [M_\star] + 226.6 \\\text{[au]} \,.
+\end{equation}
+We then sampled the whole stellar mass range and obtained the full sampling of the parameter space shown in Figure~\ref{fig:param_euv}.
+\begin{figure*}
+    \includegraphics[width=0.92\textwidth]{parameter_space_EUV.png}
+    \caption{KDE plot of the alpha - disc mass (left) and alpha-r1 (right) parameters that were adopted in the EUV population synthesis in order to have a disc life-time compatible with the observationally derived one. \label{fig:param_euv}}
+\end{figure*}
+For the XEUV profile we realized that the disc evolution was primarily driven by the internal photoevaporation rather than the disc properties, thus we chose to sample uniformly the parameter space for the disc properties and fix only the disc mass to $0.1 M_\star$ as this is a reasonable value of the initial disc mass when the disc self-gravity stops being the driver of disc evolution and the approximation of a viscously evolving disc is reasonable. We summarize the parameter space probed in Table~\ref{tab:popsynthtable}.
+\begin{table*}
+	\centering
+	\caption{Parameters for the population synthesis calculations.}
+	\label{tab:popsynthtable}
+	\begin{tabular}{lccccr}
         \hline
-        \end{tabular}
-        \caption{\label{tab:PlutoPars} Main properties of the parameter space studied.}
-        \end{table}
-
-        The grid radial coordinate $R$ extends from just inside the cavity location (at 5, 10, and \SI{15}{au} for increasing gas \textbf{cavity sizes}) to allow an increased resolution of the cavity edge and at the same time save the computational time needed to model the empty region inside it. The outer radial boundary is placed at \SI{1000}{au}, with an outer region from \SI{800}{au} where the hydrodynamics is not evolved, in order to explore the entire extent of the disc and avoid numerical reflections that would alter the wind diagnostics \citep{Picogna2019}. The radial grid is divided into 300 log-spaced cells, and open boundary conditions are applied at the inner and outer edges.
-        In the polar direction, the grid ranges from the polar axis ($\theta = 0.005$) to the mid-plane with $160$ logarithmically spaced cells, which gives a higher resolution close to the disc mid-plane where the dust dynamics is taking place. The boundary condition is reflective both at the mid-plane and close to the polar axis. The grid is 2-dimensional, since the problem is symmetric in the azimuthal direction.
-        
-    \subsection{Thermal Calculations}\label{sec:mocassin}
-
-        The gas temperature in the disc atmosphere is determined by a parameterisation based on detailed multi-frequency gas photoionisation and dust radiative transfer calculations performed with the {\sc mocassin} code \citep{MOCASSIN1,MOCASSIN2,MOCASSIN3} for typical protoplanetary disc conditions, irradiated by a realistic XEUV spectrum presented in \citet{Ercolano2008,Ercolano2009}.
-        The resulting temperature is dependent on the column density to the central star $N$ and the ionisation parameter $\xi=L_x/nr^2$, where $L_x$ is the stellar X-ray luminosity, $n$ the local gas particle density, and $r$ the distance from the star, and it is tabulated for fast calculation.
-        This temperature prescription is valid up to the maximum penetration depth of X-rays ($N_X = 2\cdot10^{22}$ pp/cm$^2$, \cite{Ercolano2009}).
-        For larger column densities we assume perfect dust and gas thermal coupling and adopt the dust temperatures from hydrostatic disc models obtained via the \textsc{diad} radiative transfer models.
-        The gas (and dust) temperature is thus tabulated and locally isothermal. We do not include effects like adiabatic cooling, viscous heating, dust-gas thermal interactions.
-       
-    \subsection{Dust dynamics}\label{sec:dust}
-    
-        The simulation was initialized only with the gas component for a few tens of orbits (at 10 au) to allow for the disc to reach a \textbf{vertically hydrostatic} equilibrium before the dust was inserted.
-        We modelled the dust component of the disc with $4\cdot10^5$ Lagrangian particles equally distributed in four size bins (relevant to ALMA dust continuum observations) with a radius $s$ ranging from \SI{100}{\mu m} to \SI{10}{cm} (see Table~\ref{tab:PlutoPars}).
-        \textbf{From a dynamical point of view, particles smaller than $100 \, \mu$m are almost completely coupled to the gas. Decreasing the minimum size has been found to have a very limited impact also on our synthetic maps for the wavelength considered, so we restricted our analysis to this range.}
-        The dust particles were placed with an initial scale height \citep{Youdin2007}
-        \begin{equation}\label{eq:scale-height}
-            \frac{H_p}{H} = \sqrt{\frac{\alpha}{\alpha + St}}\,,
-        \end{equation}
-        where we assumed an isotropic turbulence ($\alpha_z = \alpha_R = \alpha = 0.001$), $H$ is the local gas scale height, $St = t_s\Omega_K$ is the particle Stokes number, $t_s$ is the particle stopping time, which in the Epstein regime (for dust sizes much smaller than the mean free path of gas molecules) takes the form
-        \begin{equation}\label{eq:Stokes_number}
-            t_s = \frac{s\rho_s}{\rho_g\bar{v}_{th}}\,,
-        \end{equation}
-        $\rho_s$ is the dust internal density, $\rho_g$ the local gas density, $s$ the dust size, and $\bar{v}_{th}$ the local gas thermal velocity. In this way, the initial dust configuration is close to its equilibrium and we limit vertical oscillations.
-        The Stokes number (or analogously the stopping time) is a measure of the dust-gas coupling. Dust with a small Stokes number is tightly coupled with the gas, following closely its distribution, while for increasing Stokes number the dust starts to decouple from the gas, not feeling the pressure support, drifting towards the central star and settling on the disc midplane \citep{Whipple1972,Weidenschilling1977}. The dust with Stokes number of order unity are those that evolve more rapidly with respect to the gas.
-        The four dust sizes modelled correspond to minimum Stokes numbers of $1.4\cdot10^{-3}, 1.2\cdot10^{-2}, 9.6\cdot10^{-2}, 0.98$ respectively (calculated at the disc midplane \textbf{for the 10 au transition disc case}).
-        Any dust drifting through the radial boundaries of the simulation was reinserted at the outer boundary to keep the number of dust particles constant, while reflecting conditions were applied for the azimuthal boundaries, similarly as for the gas component.
-        The particles were evolved using a leap-frog integrator.
-        To prevent the dust to settle vertically and keep the initial equilibrium scale height given by equation~\ref{eq:scale-height}, we apply random turbulent kicks to the dust particles proportional to the level of turbulence $\alpha$ adopted (see Table~\ref{tab:PlutoPars}). For more details on the numerical implementation, the reader is referred to \cite{Picogna2018}. We ran the hydrodynamical simulations together with the dust evolution for $\sim15$ kyr, at which point the dust distribution had reached a stable configuration for all modelled dust sizes.
-        
-     \subsection{Radiative transfer} \label{sec:radiative transfer}
-     
-         The results of the hydrodynamical simulations were then further processed with the radiative transfer code \textsc{radmc3d} \citep{radmc3d} to obtain improved dust temperatures and dust continuum emission maps at $0.85$ and $3$ mm, which can be observed in Band 7 and 3 by ALMA. The grid was first extended in the azimuthal direction with 600 cells, using a modified version of \textsc{fargo2radmc3d} code \citep{Baruteau2019}. The dust size distribution $n$ used for the radiative transfer calculation is a power law function of particle size $a$, $dn/da \propto a^{-3.5}$ between the minimum and maximum sizes modelled. We then compute the dust surface density of each size bin from its spatial distribution as:
-         \begin{equation}
-            \sigma_{i,\mathrm{dust}}(r,\theta) = \frac{N_i(r,\theta)}{A(r)} \frac{M_{i,\mathrm{dust}}}{\sum_{r,\theta}N_i(r,\theta)}\,,
-         \end{equation}
-
-         where $N_i$ is the number of dust particles per bin size in each grid cell of the simulation, $A$ is the surface area of each grid cell \textbf{(seen face-on)}, and 
-         \begin{equation}
-            M_{i,\mathrm{dust}} = \xi M_\mathrm{gas} \frac{a_i^{4-p}}{\sum_i a_i^{4-p}}
-         \end{equation}
-         is the dust mass per bin size, with $p=3.5$ the power-law exponent of the dust size distribution, $\xi=0.01$ the dust-to-gas mass ratio, and $M_\mathrm{gas}$ is the total gas mass in the simulation.
-
-         For the optical depth calculation we assumed a dust opacity of compact spherical grains from Mie theory and adopt optical constants of astronomical silicates \citep{Draine2003}.
-
-         We place the disc at a distance of \SI{140}{pc}, which is typical of close star-forming regions.
-         The temperature and radius of the star were set to be $T_\mathrm{eff}=5000 K$ and $R_*=2.5 R_\odot$, consistent with the X-ray luminosity adopted in the hydrodynamic model.
-         We chose a logarithmically-spaced wavelength grid $10^{-1} \leq \lambda [\mu m] \leq 10^4$, $10^8$ photon packages for ray-tracing, creating a $2048\times2048$ pixel flux map.
-         Finally, we create mock observations by convolving the intensity maps of the modelled images with ALMA beam sizes for Band 7 (\SI{0.85}{mm}) and Band 3 (\SI{3}{mm}). Specifically, we took the same set-up used in \cite{Nazari_2019} and adopted the configurations C43-8 and C43-5 for Band 7 giving a beam size of $0.034 \arcsec \times 0.031 \arcsec$, and C43-9, C43-6 for Band 3 with a beam size of $0.067 \arcsec \times 0.056 \arcsec$.
+		\hline
+		  name & viscosity & r1 & disc mass & stellar mass & stellar flux \\
+        & $\log_{10}(\alpha)$ & au & $M_\star$ & $M_\odot$ & $(\Phi_{EUV},\ L_X)$\\
+		\hline
+		  EUV & Fig.~\ref{fig:param_euv} & Fig.~\ref{fig:param_euv} & Fig.~\ref{fig:param_euv} & Fig.~\ref{fig:stellar_masses} & Fig.~\ref{fig:phiEUV}\\
+		XEUV & [-4, -2] & [10, 100] & 0.1 & Fig.~\ref{fig:stellar_masses} & Fig.~\ref{fig:Lx}\\
+		%3 & 5 & 7 & 9\\
+		\hline
+	\end{tabular}
+\end{table*}
 
 \section{Results}\label{sec:results}
 
-    \subsection{Hydrodynamics} \label{sec:results-gas}
+Figure~\ref{fig:mdot_age} shows the accretion rates as a function of time for a population synthesis of 10,000 discs sampled as described in the previous section.
+Overplotted with blue dots of variable size (based on their stellar mass) is the population of low accretors from \citet{Thanathibodee2023}, and the observational limit of the He I $\lambda10830$ marked with a black dashed line at $10^{-11}$ M$_\odot$ yr$^{-1}$.
+One can immediately see that while the XEUV profile catches all the observed data points in the region with high density ($> 10^{-2}$), while the EUV cannot explain the data for the older star-forming regions (Orion OB1a and Upper Sco). Furthermore the observational data points lie in the upper region of the distribution, even though they are a sample of the low-accretors population. This means that the bulk of the discs in the studied star forming regions covers a region not explained by the EUV photoevaporation profiles.
+\begin{figure*}
+    \includegraphics[width=0.92\textwidth]{mdot_age_comparison}
+    \caption{Synthetic populations showing the accretion rates as a function of age. The colors show the probability of finding an object of a given age accreting at a given rate (see text for details). Left panel: Discs are dispersed by EUV photoevaporation; right panel: discs are dispersed by X-ray photoevaporation. The low-accretors population is overplotted with blue dots with variable size increasing by the stellar mass.
+    \label{fig:mdot_age}}
+\end{figure*}
 
-        The gas density distribution in the inner disc after several hundred orbits is shown in Fig.~\ref{fig:GasDist} for the three simulated discs. After few \textbf{hundred} orbits at \SI{10}{au} the disc sets into a quasi-steady state in which the cavity inner edge has moved inwards from the initial location until an equilibrium between the viscous gas inflow and the photoevaporative gas removal is reached. \textbf{This condition is different from the few tens of orbits needed to reach a vertically hydrostatic equilibrium, before dust insertion, as here the timescale is set by the concurrent viscous spreading and gas removal by the disc wind which take place over a longer timescale, depending on the alpha disc viscosity and the stellar mass and X-ray luminosity}.
+Another way to show the results, and avoid the errors related to the age determination of star forming regions is to plot the accretion rates as a function of the star forming region disc fractions (see Figure~\ref{fig:mdot_frac}). In a similar way here the data points for the low-accretors lie all in the region with low probability density or not explained by the current EUV models (left panel). The situation is significantly different looking at the XEUV population (right panel) where the data points sit in the bulk of the distribution, with small mass stars (small dots) covering the lower part of the high density distribution and the bigger stars the top part. This is expected from the observationally derived relation between accretion rate and stellar masses, that shows a sharp increase of the accretion rate as a function of stellar mass with a broken power law \citep{Alcala2017}.
 
-        The dashed lines mark the disc region which is directly affected by X-ray heating, while gas deeper in the disc is shielded from the star's radiation and in thermal equilibrium with the dust.
-        The gas density is increased also close to the mid-plane in the cavity region. 
-        This is due to the streamlines of the photoevaporative wind, which move radially inwards before carrying material outwards, as shown with red solid lines.
-        \begin{figure*}
-            \centering
-            \includegraphics[width=\textwidth]{Fig1}
-            \caption{Gas density distributions for the different runs in the inner \SI{80}{au}. The black dashed line show the maximum penetration depth of X-rays ($N_X = 2\cdot 10^{22}$ pp cm$^{-2}$), while the red lines show gas streamlines in the wind every $8\%$ of the cumulative mass-loss rate.}.
-            \label{fig:GasDist}
-        \end{figure*}
-        At large radii the disc aspect ratio, flaring and gas density in the wind region are unaffected by the cavity size.
-        Close to the cavity, as the unshielded X-ray irradiation heats up the \textbf{bulk of the disc}, the \textbf{mid-plane} temperature rises sharply and the disc scale height steeply increases as shown in Figure~\ref{fig:scale-height}a,b. Furthermore, plotting the pressure gradient at the disc mid-plane one can see that a double peak develops close to the inner gap edge (Figure~\ref{fig:scale-height}d).
-        The innermost peak is created by the temperature increase, as the gas starts to be heated by the direct X-ray irradiation. The outermost one is related to the local maximum in the midplane gas density (see Figure~\ref{fig:scale-height}c).
-        These effects have a strong impact on the gas and dust dynamics as shown in Section~\ref{sec:results-dust}, since the dust will collect at the locations where the pressure reaches a maximum, or the gradient is zero. In Figure~\ref{fig:scale-height}e, we show the intensity of the dust continuum emission at 0.85 and 3 mm for direct comparison.
-        
-        \begin{figure}
-            \centering
-            \includegraphics[width=\columnwidth]{Fig2}
-            \caption{Panel a: disc scale height radial profile. Panel b: gas temperature radial profile. Panel c: mid-plane gas density radial profile. Panel d: normalized mid-plane pressure gradient. Panel e: radial profile of the continuum intensity in Band 3 (solid) and 7 (dashed dotted line). With dotted vertical lines the location of zero pressure gradient are reported. In all panels the orange, red, and brown lines represent the 10, 20, and 30 au cavity models respectively.
-            \label{fig:scale-height}}
-        \end{figure}
-         
-    \subsection{Dust dynamics} \label{sec:results-dust}
-        After few tens of orbital periods of the gaseous disc, the dust component was included in the simulation.
-        The strong vertical settling for particles with Stokes number close to unity (last two rows) is clearly visible in Figure~\ref{fig:GasDustDist} where the normalized dust surface densities are shown for the different runs.
-        In the radial direction the particles were initially spread over a range of \SI{30}{au} starting from the gas cavity. This means that the initial distribution reached out to \SI{40}{au} for the \SI{10}{au} cavity, \SI{50}{au} for the \SI{20}{au} cavity, and \SI{60}{au} for the \SI{30}{au} cavity.
+%\begin{table*}
+%	\centering
+%	\caption{Observational properties of the low-accretors population.\\ \note{(1) \citet{Thanathibodee2023}, (2) \citet{daRio2016}, (3) \citet{Galli2021}, (4) \citet{Briceno2019}}}
+%	\label{tab:low-acretors-table}
+%	\begin{tabular}{lcccccr} % four columns, alignment for each
+%		\hline
+%		  Group & Age & Disc Fraction & Target & Stellar mass & Accretion rate & References \\
+%         & (Myr) & (\%) & & M$_\odot$ & ($10^{-10}$ M$_\odot$ yr$^{-1}$) & \\
+%		\hline
+%        \hline
+%        \multirow{2}{*}{OriOB1a} & \multirow{2}{*}{$10.8\pm2.9$} & \multirow{2}{*}{6} & CVSO 40 & 0.53 & $2.0\pm0.0$ & (1,4)\\
+%        & & & CVSO 298 & 0.56 & $1.3\pm0.5$ & (1,4)\\
+%        \hline
+%        \multirow{8}{*}{OriOB1b} & \multirow{8}{*}{$5.0\pm2.1$} & \multirow{8}{*}{$12$} & CVSO 156 & 0.34 & $1.4\pm0.4$ & (1,4)\\
+%        & & & CVSO 1545 & $0.17$ & $1.4\pm0.4$ & (1,4)\\
+%        & & & CVSO 1600E & $0.27$ & $2.3\pm0.5$ & (1,4)\\
+%        & & & CVSO 1600W & $0.27$ & $2.8\pm0.3$ & (1,4)\\
+%        & & & CVSO 1739 & $0.10$ & $1.7\pm0.2$ & (1,4)\\
+%        & & & CVSO 1772 & $0.29$ & $0.4\pm0.1$ & (1,4)\\
+%        & & & CVSO 1842 & $0.32$ & $1.0\pm0.4$ & (1,4)\\
+%        & & & CVSO 1886 & $0.28$ & $2.9\pm0.8$ & (1,4)\\
+%        \hline
+%        \multirow{5}{*}{Ori Cloud A} & \multirow{5}{*}{$3.3\pm1.6$} & \multirow{5}{*}{$28$} & CVSO 1295 & 0.59 & $1.5\pm0.4$ & (1,2,4)\\
+%        & & & CVSO 1575 & 0.57 & $1.0\pm0.2$ & (1,2,4)\\
+%        & & & CVSO 1711 & 0.52 & $1.2\pm0.5$ & (1,2,4)\\
+%        & & & CVSO 1763 & 1.09 & $3.8\pm0.6$ & (1,2,4)\\
+%        & & & CVSO 1928 & 0.47 & $1.3\pm0.4$ & (1,2,4)\\
+%        \hline
+%        Ori Cloud B & $2.45\pm1.3$ & $31$ & CVSO 1942 & 0.72 & $1.3\pm0.4$ & (1,4)\\
+%        \hline
+%        \multirow{2}{*}{Chamaeleon I} & \multirow{2}{*}{$2\pm0.4$} & \multirow{2}{*}{$44$} & ISO-ChaI 52 & 0.18 & $1.1\pm0.4$ & (1,3)\\
+%        & & & CHSM 13620 & 0.34 & $1.4\pm0.4$ & (1,3)\\
+%        \hline
+%        \multirow{3}{*}{Upper Sco} & \multirow{3}{*}{10-12} & \multirow{3}{*}{$21\pm1$} & J16020757 & 0.32 & $0.7\pm0.3$ & (1)\\
+%        & & & J16253849 & 0.56 & $1.1\pm0.2$ & (1)\\
+%        & & & J16042165 & 1.39 & $2.1\pm0.7$ & (1)\\
+%        \hline
+%        \multirow{2}{*}{$\gamma$Vel} & \multirow{2}{*}{$7.5$} & \multirow{2}{*}{$6$} & J08074647 & 0.16 & $0.4\pm0.1$ & (1)\\
+%        & & & J08075546 & 1.15 & $1.4\pm0.4$ & (1)\\
+%        \hline
+%        $\sigma$Ori & $3$ & $36\pm4$ & SO682 & 0.46 & $1.3\pm0.2$ & (1)\\
+%		\hline
+%	\end{tabular}
+%\end{table*}
+\begin{figure*}
+    \includegraphics[width=0.92\textwidth]{mdot_frac_comparison}
+    \caption{Synthetic populations showing the accretion rates as a function of disc fraction. The colors show the probability of finding a disc of a given accretion rate in a star forming region with a given disc fraction (see text for details). Left panel: Discs are dispersed by EUV photoevaporation; right panel: discs are dispersed by X-ray photoevaporation. The low-accretors population is overplotted with blue dots with variable size increasing by the stellar mass.
+    \label{fig:mdot_frac}}
+\end{figure*}
 
-        The smallest particles (St$\ll 1$) are very well coupled to the gas and thus follow its distribution closely, spreading to higher heights and very close to the inner cavity radius (see first row of Figure~\ref{fig:GasDustDist}).
-        Particles of intermediate sizes ($\mathrm{St} \sim 1$) do not follow the gas distribution closely, though they interact strongly with the gas and migrate quickly towards the \textbf{(second)} gas pressure maxima \textbf{(correspondent to the gas density maxima)} just outside the gap.
-        They also settle more efficiently following equation~\ref{eq:scale-height}.
-        The effect of dust drift is evident comparing the four dust sizes, where the \SI{1}{cm}-sized particles (3rd row) have $\mathrm{St} \sim 1$ and are the ones drifting faster towards the pressure maxima at the gap edge.
-        \begin{figure*}
-            \centering
-            \includegraphics[width=\textwidth]{Fig3}
-            \caption{Dust (normalized) density distributions for the four dust particles modelled and the different cavity edges. The red dashed line show the maximum penetration depth of X-rays ($N_X = 2\cdot 10^{22}$ pp cm$^{-2}$)\textbf{, while the dashed black lines show the isocontours of gas pressure in log scale. The snapshot is taken after 1,500 yr of dust insertion.}}
-            \label{fig:GasDustDist}
-        \end{figure*}
-        
-        Furthermore, the particle scale height is strongly increased close to the inner cavity, since the gas temperature is higher due to the X-ray direct irradiation and the gas scale height is puffed up, as shown in Figure~\ref{fig:scale-height}a. This might allow a fraction of the smaller dust particles to be launched with the wind, however this effect is not visible in Figure~\ref{fig:GasDustDist}, since this fraction is too small to be captured by our limited number of modelled particles, and it involves mostly smaller (tightly coupled) dust particles. As explored recently in \citet{Franz2022}, the dust entrainment in transition discs can lead to potentially observable features that can be signatures of a thermal (or magnetic, see e.g. \citet{Rodenkirch2022}) wind.
+We plotted in Figure~\ref{fig:hist_mdot} the histogram of the accretion rate distribution for the EUV (in blue) and XEUV (in green) populations. We overplotted as well the median accretion rates in dotted-dashed blue and green line respectively, and the median accretion rate for the observed population of low-accretors with a dotted-dashed black line. From this one can directly visualize how the median of the XEUV population and the observed low-accretors is very similar, while it is close to the high-accretor wing of the EUV distribution.
+\begin{figure}
+    \includegraphics[width=\columnwidth]{hist_mdot.png}
+    \caption{Histogram of the accretion rate density distribution in the EUV (blue) and XEUV (green) population synthesis. The KDE is overplotted with a blue and green solid line for the EUV and XEUV distributions respectively, and the median values are plotted with dotted-dashed lines. For direct comparison the median accretion rate of the low-accretors population is plotted with a black dotted-dashed line.\label{fig:hist_mdot}}
+\end{figure}
 
-        \textbf{Interestingly, the particles with dust size equal to \SI{0.1}{cm} (second row) show a clear under-density at the disc mid-plane close to the cavity edge. This effect is cause by the vertical distribution of the pressure gradient, which is stronger at the disc midplane and gets weaker for increasing heights. The increased dust scale height close to the cavity edge allows particles of the same size to experience a large range of Stokes numbers. When they eventually settle towards the disc midplane their Stokes number increases and they drift directly towards the pressure maxima which deplets the region just inside it close to the disc midplane.}
-        
-        The particle distribution at the end of the simulation suffers from the lack of constant dust flux from the outer edge due to our choice of a constant particle number (bottom rows of Figure~\ref{fig:GasDustDist}). As a result, for Stokes numbers close to unity, dust is mostly concentrated close to the disc cavity. In order to soften this effect we chose an intermediate time to post-process our results for these dust sizes since the time-scale to reach an equilibrium configuration is much faster for them.
-  
-    \subsection{Radiative Transfer} \label{sec:radiative-transfer}
-        In Figure~\ref{fig:DustContinuum} we post-processed the equilibrium configuration of the dust distribution with \textsc{radmc-3d} obtaining the dust continuum emission at $0.85$ and \SI{3}{mm}, which represent Band 7 and 3 of ALMA, for the $10$, $20$ and \SI{30}{au} cases.
-        
-        \begin{figure*}
-            \centering
-            \includegraphics[width=\textwidth]{Fig4}
-            \caption{Continuum emission maps for the different transition discs cavities in Band 7 (top row) and Band 3 (bottom row).}
-            \label{fig:DustContinuum}
-        \end{figure*}
-        
-        The intensity of the dust emission has a maximum just beyond the gap edge, where the dust particles have accumulated. This maximum takes the form of a bright ring, clearly visible in the \SI{3}{mm} continuum emission (see also Figure~\ref{fig:scale-height}e), as it collects more flux for particles with Stokes number close to unity.
-        
-        Beyond the bright ring the intensity gradually declines, as the dust at larger radii is increasingly shielded from stellar radiation. For the $20$ and \SI{30}{au} cases a second peak is visible in the outer disc, which corresponds to the flux of pebbles that is migrating from the outer edge and is not replenished by a constant flux.
-        To allow for a more quantitative comparison of the emitted intensity we plot in Fig.~\ref{fig:comp_beam} (bottom row) a slice of the intensity map for the three discs at the two different wavelengths.
-        The slices for the different wavelengths, which in principle trace different grain species, are of very similar shape and their maxima are located at the same radial distance, which doesn't allow us to have a quantitative observable of the effect of photoevaporation on different particle sizes (at least for the parameter space studied).
-         
-    \subsection{Synthetic Images} \label{sec:synthetic-images}
-        We created mock observations by convolving the continuum dust emission with beam sizes of two ALMA configurations, as explained in Section~\ref{sec:radiative transfer}, in order to understand whether the observed features might be strong enough to be detected by current observational facilities and distinguishable from other physical processes. 
-        The resulting images are shown in Fig.~\ref{fig:comp_beam}.
-        In the cases of the \SI{3}{mm} and \SI{0.85}{mm} emission the clearly defined rings visible in Fig.~\ref{fig:GasDustDist} appear as broader features.
-        %Due to the larger beam size in Band 3, the features are less visible than in Band 7.
-        The radial intensity curves for these mock observations are also shown in Fig.~\ref{fig:comp_beam} (bottom panel) and are smoothed out compared to the theoretical data but have their maximum at the same location, just outside the inner gap edge.
-        
-        %While the rings can still be seen in the convolved images they are invisible in those generated with casa, likely due to the very large pixel size selected, which leads to a coarse resolution.\\
-        Even though there are differences in the distributions of different particle sizes, the location of the intensity maximum is the same for \SI{0.85}{mm} and \SI{3}{mm} even in the theoretical images. 
-        %The maximum of the 1. 6 $\mu$m emission is clearly offset, but unlikely to be detectable in any real observations given the fact that the emission from the star dominates the synthetic observations at this wavelength.\\
-        Despite the simplified way in which we simulated ALMA observations, 
-        %a more detailed approach, using the \textsc{casa} software \citep{CASA}, and considering noise would yield a more realistic set of images.
-        it is likely that the main rings in the \SI{0.85}{mm} and \SI{3}{mm} emission are bright and broad enough to be observable.
-        
-        \begin{figure*}
-          \centering
-          \includegraphics[width=\textwidth]{Fig5}
-          \caption{Dust continuum emission in Band 7 (top panel) and 3 (middle panel) convolved with a realistic ALMA beam size for the 10, 20, and 30 au transition discs. The convolution with the beam size blurs the features seen in Figure~\ref{fig:DustContinuum}. In the bottom panel the radial profiles are shown for a direct comparison between \textbf{Band 7 (in orange) and Band 3 (in brown)} and the convolved \textbf{(solid lines)} and unconvolved \textbf{(dashed lines)} intensities.}
-          \label{fig:comp_beam}
-        \end{figure*}
+We compared finally the distribution of disc fractions as a function of age, calculated as the time at which the accretion rate drops below $10^{-11}$ M$_\odot$ yr$^{-1}$ in our population synthesis with the observed distribution of disc fraction. As expected the EUV distribution fits perfectly, as we choose the parameter space in order to fit it for the median stellar mass and EUV ionizing field. The XEUV distribution is also very accurate in describing the observed star forming region population with the only constraint of an initial disc mass of $0.1$ M$_\star$.
+\begin{figure}
+    \includegraphics[width=0.92\columnwidth]{disk_lifetime.png}
+    \caption{Disc fraction as a function of disc lifetime for the XEUV (top panel) and EUV (bottom panel) synthetic populations compared with the observational data from \citet{Mamajek2009}, divided in 3 stellar mass bins. The median disc lifetime are plotted with dashed vertical lines. The median disc life-time increases with stellar mass for the EUV models, while it decreases for the XEUV models. \label{fig:frac_time}}
+\end{figure}
+%For the case of X-ray photoevaporation the probability of finding an object at a given accretion rates changes as a function of age of the population. However for objects older than approximately 1~Myr it is clearly not improbable to find objects at rates of order $10^{-10}M_{\odot}/yr$. In particular for objects older than about 5 Myr the probability distribution peaks indeed at these values. For lower accretion rates the probabilty decreases sharply for all ages, indicating that the lowest accretors of a population of discs being dissipated by X-ray photoevaporation is indeed to be found accreting at rates of order $10^{-10} M_{\odot}/yr$ as observed by T22. 
+%This can be clearly seen in Figure?? where the probability of an object accreting at a given rate is plotted for a few typical ages. {\color{red} make this figure}. 
 
-\section{Discussion} \label{sec:discussion}
-    The features in the dust continuum emission formed by a photoevaporative wind should create a unique fingerprint that can be distinguished from other physical processes, given enough resolution.
-    In order to measure in a quantitative way the difference between gap forming mechanisms we compared the intensity profiles of dust continuum emission for different physical processes, and the spectral index obtained from the two frequencies studied.
 
-    \subsection{Dust continuum emission}
-    The most straightforward way to create a gap is via planet-disc interaction. \citet{Facchini2018} modelled the dust continuum emission at \SI{0.85}{mm} wavelengths for a $1$, $5$, and \SI{9}{M_{Jup}} planets at \SI{20}{au} from the central star, postprocessing the hydrodynamical simulations by \cite{Ovelar2016}. We compared in Figure~\ref{fig:Grad} the intensity and radial gradient of the continuum emission in Band 7 (convolved with the same beam size adopted in their work, i.e. $0.03 \arcsec$ at a distance of \SI{150}{pc}) with our photoevaporative cavity. The intensity profile show a much stronger dependance for the transition discs as a function of the cavity radius with respect to the planetary masses at a fixed radius. On the one hand, the planetary case shows a clear trend of shallower profiles for increasing masses. On the other hand the photoevaporative gap shows a more complex behavior. Looking more in depth at the gradient of the profile in the right panel, we can see that the \SI{10}{au} case shows a much sharper gradient, given by the higher density close to the gap edge. The \SI{30}{au} case is comparable with a \SI{1}{M_\J} planet at \SI{20}{au} (dot dashed orange line and solid brown line) both looking at the intensity profile and its gradient. Potentially a \SI{1}{M_\J} at 27-\SI{28}{au} would generate a very similar intensity profile at the gap edge as a photoevaporative gap at \SI{30}{au}. The steepness of photoevaporative gaps seems then to increase as a function of gap cavity as the larger gap is able to collect an increasing function of the drifting dust. On the contrary a more massive giant planet will open a deeper and wider, but shallower gap for increasing masses. Thus, the only match between the two processes is for a 1 Jupiter mass planet, for the current choice of the parameter space (i.e. X-ray luminosity, disc properties).
-    \begin{figure*}
-        \centering
-        \includegraphics[width=\textwidth]{Fig6}
-        \caption{Panel a: radial intensity profile in Band 7 for this work in orange and from \citet{Ovelar2016,Facchini2018} for a $1$, $5$, and $9 M_\mathrm{J}$ mass planet in brown. Panel b: gradients of the intensity curves. We adopted a $0.03 \arcsec$ resolution beam and a distance of $150$ pc for direct comparison.}
-        \label{fig:Grad}
-    \end{figure*}
-    
-    \subsection{Spectral index}
-    To disentangle the planetary and photoevaporation scenario one can extract from a multi-wavelength analysis of an object its spectral index, defined as
-    \begin{equation}
-        \alpha_{73} = \frac{\log{(I_7/I_3)}}{\log{(\nu_7/\nu_3)}}\,,
-    \end{equation}
-    where $I_7$ and $\nu_7$ are the intensity and frequency in Band 7, and $I_3$, $\nu_3$ are the intensity and frequency in Band 3.
-    The spectral index gives a measure of dust growth or dust dynamical configuration, in the optical thin approximation.
-    \begin{figure}
-        \centering
-        \includegraphics[width=\columnwidth]{Fig7}
-        \caption{Spectral indices calculated from the synthetic images in Band 3 and 7, for the three different transition disc models, compared with the intermediate and fast migration case from \citet{Nazari_2019}, shifted to be centred at the cavity edge \textbf{and zoomed in the cavity region}.}
-        \label{fig:spectral_index}
-    \end{figure}
-    In Figure~\ref{fig:spectral_index} we plotted the spectral index for our three transition disc simulations, where the \textbf{profiles have} been shifted to give a direct comparison \textbf{and zoomed in close to the cavity edge, that} has been highlighted with a \textbf{vertical} dashed black line.
-    The two main trends that are observed are a reduction of the spectral index in the bright ring corresponding to the gap edge of the transition \textbf{disc}, and a general increase of the spectral index as a function of the distance from the central star, which is compatible with the current observations \citep[e.g.][]{Long2020}.
-    The most notable difference between our models is that for smaller cavities there is a less steep increase of the spectral index, since large dust particles are not all collected close to the inner edge of the cavity but spread across a larger region.
-    Since we do not include dust growth in these simulations, this is purely a dynamical effect. The reason for this difference is the limited dust supply from the outer disc region, and the larger Stokes number for dust particles of the same size in the outer disc (because of the decreased gas surface density, see eq.~\ref{eq:Stokes_number}) which increases their drift speed towards the cavity edge.
+%For the case of EUV photoevaporation.... 
 
-    We compared our results with \citet{Nazari_2019}, that modelled the observability of a \SI{30}{M_\oplus} planet with different orbital migration for the same bands.
-    \textbf{They assumed a different approach than in the current work, modelling the planet-disc interaction in 2D (assuming a vertical dust distribution a posteriori), and adopting a pressureless fluid approach to describe the dust evolution, which does not allow to follow the history of a particular dust sample but lessen the problem of a limited dust supply to the cavity edge.} 
-    There is a stark difference with respect to the planetary case. 
-    %First of all the spectral index increases much \textbf{more} steeply at the gap cavity, which is a direct consequence of the stronger gradient in the intensity profile with respect to the planetary case.
-    The minimum spectral index at the ring location is larger for the photoevaporative case which implies a less strong filtering effect with respect to the \SI{30}{M_\oplus} planet. 
-    Inside the \textbf{cavity} the spectral index increases again due to the low density and low optical depth of the disc wind.%, which is more pronounced for larger gap cavities.
+%For the case of FUV photoevaporation.... 
 
-    \textbf{There is a growing literature of multi-wavelength high-resolution observations of planet forming discs, of which few of them cover also transition and pre-transition discs.} 
-    \textbf{In particuar, the HD169142 system \citep{Macias2019} shows two bright rings at $25$ and \SI{60}{au} with spectral index between Band $3$ and $7$ of $2.025\pm0.03$ and $2.33\pm0.03$ respectively, where the first is only compatible with a planetary origin while the second is closer to the predictions of disk photoevaporation. Indeed it has been recently suggested than a Jupiter mass planet might be hiding in the disc cavity \citep{Hammond2023}, which render this system an important test bed in order to constraint current modelling.} 
-    \textbf{Furthermore, the transition disc GM Aur \citep{Huang2020} shows two bright rings at 40 and \SI{84}{au} with a spectral index between 1.1 and 2.1 mm of 2.1 and 2.35, respectively. Here again the first value is compatible with the planetary scenario, while the second one is on the high end, but a targeted analysis of these systems should be made to draw meaningful conclusions, which goes beyond the scope of the current work.}
+\subsection{Mass dependent results}
 
-    \subsection{Model limitations}
+The results shown in the previous section assume a well-sampled IMF, which implies that objects at the lower end of the mass range are the most abundant. However the sample of low accretors of \citet{Thanathibodee2023} includes only $24$ objects with masses ranging between $0.1$ and $1.39$ M$_\odot$. The majority of objects have masses between $0.5$ and $0.6$ M$_\odot$, resulting in a significant different stellar mass function with respect to the adopted IMF, as shown in Figure~\ref{fig:mstar_comparison}.
 
-    \textbf{The spectral index comparison with a \SI{30}{M_\oplus} planet is inconsistent with the more massive ones previously considered for the dust continuum emission, though a jupiter mass planet will create a steeper cavity which will have a stronger filtering effect, enhanching the behavior observed for smaller mass planerts.}
-    \textbf{However, recent results point to more leaky giant planets \citep[see e.g.][]{Stammler2023} which might alleviate the observed difference in the spectral indeces between these two effects.}
-    \textbf{Nevertheless, a self-consistent modelling of planet and photoevaporation within the same framework would help better to disentangle the two effects, and it is indeed our plan for the future. Further differences given by the non axysimmetric structures introduced by the planet, and the temporal variability on an orbital timescale can be used to further distinguish a planetary induced transition disc.}
+The accretion rate values reported by T22 do not show any obvious correlation with the object mass. 
+In Figures?? to??? we show the accretion rate probabilities for our populations when we restrict the mass ranges to low (0.1-0.3), intermediate (0.3-0.6), high (0.7-0.9). 
+{\color{red} how does the picture change for the individual masses ranges?}.
 
-    \textbf{In this study we considered only a very specific set of parameters. In the future we plan to relax these conditions by varying the disc (alpha, disc mass) and stellar properties (stellar mass and X-ray luminosities). Furthermore, to expand further the parameter space, a good avenue would be to restrict to a 1D disc evolution with prescribed mass-loss rates that would allow us to include dust growth/fragmentation, similarly as in \citet{Garate2021}.}
+We find.... 
+\begin{figure}
+    \includegraphics[width=0.92\columnwidth]{Mstar_comparison.png}
+    \caption{Stellar mass distribution of the low-accretor population in \citet{Thanathibodee2023} with overplotted KDE in a solid blue line, compared with the IMF adopted in this work shown with a red solid line. The median values of the two distributions are shown with blue and red dotted-dashed line, respectively.  \label{fig:mstar_comparison}}
+\end{figure}
 
-\section{Conclusions} \label{sec:conclusions}
+\subsection{Low-accretors variability}
 
-We modelled the dust dynamics in a 2D dusty hydrodynamical simulation of a transition disc carved by stellar X(EUV) irradiation from the central star, and found the equilibrium distribution of a range of dust sizes.
-From this result we calculated the dust continuum emission at $0.85$ and \SI{3}{mm} wavelengths and derived synthetic ALMA observations. We then compared the cavity profiles created by photoevaporation with those of transition discs carved by a super-Earth/giant planets, in order to find characteristic features of each physical process that can be observed in current and future observational campaigns.
-We found that the steepness of the 30 au photoevaporated dust cavity is similar to that of a 1 M$_\mathrm{J}$ planet (at a similar location), while larger planets and/or larger photoevaporated cavities can generates distinguishable features.
-In order to further disentangle these two effects, the spectral index analysis shows very different profiles for the planetary and photoevaporative cases, with a higher spectral index at the photoevaporated cavity edge due to the lower filtering efficiency.
-%Furthermore, the cavity is characterized by a double peak in the emission in Band 3 and 7, which is directly related to the pressure gradient profile (Figure~\ref{fig:scale-height}b), as the temperature sharply increases due to X-ray irradiation and the density drops close to the cavity edge. However, with realistic ALMA beam sizes this double peak appears as an extended ring.
-This combination of features might be specific to transition discs opened by photoevaporation, though a larger study for different stellar X-ray luminosity and stellar mass, as well as a direct comparison to a transition disc with similar physical properties opened by a planet should be necessary to better constrain the parameter space covered by stellar photoevaporation.
+\citet{Fang2023} obtained the accretion rate of a large sample in Upper Sco adopting high-resolution optical spectra from H$\alpha$ line profiles. Comparing their results with the ones measured for the same star forming region by \citet{Manara2020}, fitting simultaneously the stellar photosphere and Balmer continuous emission, they find a large spread (see their Figure~29) going to more than one order of magnitude, especially for the population of low-accretors. Comparing the low accretors with the ones derived fitting the He I $\lambda10830$ line profiles in \citet{Thanathibodee2023} they found further differences in disc classification and accretion rates. This points towards a general difficulty in classifying low accretors based on line profiles, and their intrinsic variability that should be studied further.
+
+\section{Conclusions}\label{sec:conclusions}
 
 \section*{Acknowledgements}
-GP acknowledges support from the DFG Research Unit ‘Transition Disks’ (FOR 2634/2).
-This work was performed on the computing facilities of the Computational Center for Particle and Astrophysics (C2PAP).
-This research was supported by the Excellence Cluster ORIGINS which is funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany's Excellence Strategy - EXC-2094 - 390783311.
-This paper utilizes the D’Alessio Irradiated Accretion Disk (\textsc{diad}) code. We wish to recognize the work of Paola D’Alessio, who passed away in 2013. Her legacy and pioneering work live on through her substantial contributions to the field.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Data Availability}
-The data underlying this article and the scripts used to create the Figures are available at \href{https://github.com/GiovanniPicogna/observability-td}{https://github.com/GiovanniPicogna/observability-td}.
 
+The data for the population synthesis calculations is available at ..... 
 
 %%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%
 
@@ -344,11 +425,9 @@ The data underlying this article and the scripts used to create the Figures are 
 
 %%%%%%%%%%%%%%%%% APPENDICES %%%%%%%%%%%%%%%%%%%%%
 
-%\appendix
-
+\appendix
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 % Don't change these lines
 \bsp	% typesetting comment
