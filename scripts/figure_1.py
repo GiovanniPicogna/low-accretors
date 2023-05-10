@@ -24,8 +24,7 @@ plt.rc('lines', linewidth=3.)
 
 plt.rcParams["errorbar.capsize"]
 
-fig = plt.figure(figsize=[8.5, 8.5])
-
+fig, ax = plt.subplots(1, 3, squeeze=True, figsize=[25.5, 8.5])
 
 data_path = "../data/"
 fig_path = "../figures/"
@@ -81,11 +80,26 @@ Mstar_PE = np.array(Mstar_PE)
 Phi_PE = np.array(Phi_PE)
 Lx_PE = np.array(Lx_PE)
 
-sns.histplot(x=Mstar_PE, bins=15, stat='density', kde=True)
-plt.plot(IMF_Kroupa[:, 0], IMF_Kroupa[:, 1]/np.max(IMF_Kroupa[:, 1]), 'r--')
-plt.xlabel(r'$M_\star / M_\odot$')
-plt.xlim(0.08, 1.1)
-plt.ylabel('density')
-plt.vlines(np.median(Mstar_PE), 0, 1.5, ls='-.', color='r')
+sns.histplot(x=Mstar_PE, bins=15, stat='density', kde=True, ax=ax[0])
+ax[0].plot(IMF_Kroupa[:, 0], IMF_Kroupa[:, 1]/np.max(IMF_Kroupa[:, 1]), 'r--')
+ax[0].set_xlabel(r'$M_\star / M_\odot$')
+ax[0].set_xlim(0.08, 1.1)
+ax[0].set_ylabel('density')
+ax[0].vlines(np.median(Mstar_PE), 0, 1.5, ls='-.', color='r')
+ax[0].text(0.9, 0.95, '(a)', transform=ax[0].transAxes, va='top')
+
+sns.histplot(x=Lx_PE, binwidth=0.25, stat='density', kde=True, ax=ax[1])
+ax[1].set_xlabel(r'$\\log_{10}(L_X / erg\, s^{-1})$')
+ax[1].set_ylabel('density')
+ax[1].vlines(np.median(Lx_PE), 0, 0.44, ls='-.', color='r')
+ax[1].text(0.9, 0.95, '(b)', transform=ax[1].transAxes, va='top')
+
+sns.histplot(x=Phi_PE[:, 0], binwidth=0.2, stat='density', kde=True, ax=ax[2])
+ax[2].set_xlabel(r'$\\log_{10}(\Phi_\mathrm{EUV} / s^{-1})$')
+ax[2].set_ylabel('density')
+ax[2].set_xlim(39.4, 43)
+ax[2].vlines(np.median(Phi_PE[:, 0]), 0, 0.6, ls='-.', color='r')
+ax[2].text(0.9, 0.95, '(c)', transform=ax[2].transAxes, va='top')
+
 
 fig.savefig(fig_path+'Fig1.png', format='png', dpi=400)

@@ -25,3 +25,8 @@ def IMF(masses, profile="Kroupa"):
     else:
         print("IMF profile not defined.\n")
     return 0
+
+def mask_accretion(data, value):
+    mask = (data["mdot_acc"] > value)
+    output = data[mask]
+    return output

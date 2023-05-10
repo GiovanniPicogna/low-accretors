@@ -246,46 +246,51 @@ We assume a initial stellar mass function following \citet{Kroupa2001}
 \begin{equation} \label{eq:IMF}
     \xi(m) \propto m^{-\alpha} \,,
 \end{equation}
-where $\alpha = 1.3 \pm 0.5$ for $0.08 \leq m/M_\odot < 0.5$ and $\alpha = 2.3 \pm 0.3$ for $0.5 \leq m/M_\odot \leq 1$, from which we obtain the distribution shown in Figure~\ref{fig:stellar_masses} for a sample of 10,000 stars. The adopted weighting of the distribution based on eq.~\ref{eq:IMF} is marked with a dashed red line, and the median stellar mass value given by the dotted dashed red line is $\sim 0.3$ M$_\odot$.
-\begin{figure}
-    \includegraphics[width=\columnwidth]{Fig1}
-    \caption{Histogram of the stellar mass distribution in our population synthesis, where the KDE is overplotted with a dark blue solid line, the median value of $0.3$ M$_\odot$ is marked with a dotted-dashed red line, and the adopted weigthing based on the Kroupa IMF is plotted with a dashed red line. \label{fig:stellar_masses}}
-\end{figure}
+where $\alpha = 1.3 \pm 0.5$ for $0.08 \leq m/M_\odot < 0.5$ and $\alpha = 2.3 \pm 0.3$ for $0.5 \leq m/M_\odot \leq 1$, from which we obtain the distribution shown in Figure~\ref{fig:hist} (panel a) for a sample of 10,000 stars. The adopted weighting of the distribution based on eq.~\ref{eq:IMF} is marked with a dashed red line, and the median stellar mass value given by the dotted dashed red line is $\sim 0.3$ M$_\odot$.
+\begin{figure*}
+    \includegraphics[width=\textwidth]{Fig1}
+    \caption{Panel a: histogram of the stellar mass distribution in our population synthesis, where the KDE is overplotted with a blue solid line, the median value of $0.3$ M$_\odot$ is marked with a dotted-dashed red line, and the adopted weigthing based on the Kroupa IMF is plotted with a dashed red line. Panel b: histogram of the X-ray luminosity density distribution in the XEUV population synthesis, where the KDE is overplotted with a blue solid line and the median value of $29.4$ is marked with a dotted dashed red line. Panel c: histogram of the ionizing flux density distribution in the EUV population synthesis, where the KDE is overplotted with a blue solid line and the median value of $41.2$ is marked with a dotted dashed red line.\label{fig:hist}}
+\end{figure*}
 
 \citet{Gudel2007} derived an observational relation between the median X-ray luminosities and stellar masses
 \begin{equation} \label{eq:LxMstar}
     \log_{10}(L_{X}) = (1.54\pm0.12) \log_{10}(M_\star) + (30.31\mp0.06) \,,
 \end{equation}
 though a large spread is observed around the mean values, which becomes larger for small mass stars \citep[e.g.][]{Getman2022}.
-\citet{Kuhn2019} took a subsample of the Chandra Orion Ultradeep Project (\textsc{COUP}, \citet{Feigelson2005,Getman2005}) and stratified it in 3 stellar mass bins using the \citet{Baraffe1998} evolutionary models. From this sample one can derive a X-ray luminosity function (XLF) as a function of stellar mass, as shown in Figure~\ref{fig:XLF}, from which one can see the increase in the median X-ray luminosity as a function of stellar mass as well as the increase spreading for lower stellar masses. We then calculated the median stellar mass for the three stellar mass bins in Figure~\ref{fig:XLF} given the adopted IMF, and shifted the XLF distribution to match the given value of the stellar mass. We sampled then the X-ray luminosity given the probability density corrected for the stellar mass and obtained the X-ray luminosity distribution shown in Figure~\ref{fig:Lx} from the 10,000 sampled stellar masses, with a median value of $10^{29.4}$ erg s$^{-1}$ and a spread over 4 orders of magnitude.
-\begin{figure}
-    \includegraphics[width=\columnwidth]{Fig2}
-    \caption{X-ray luminosity function for a representative sample of generic young stellar objects sample of pre-main-sequence stars detected in the Chandra Orion Ultradeep Project (\textsc{COUP}; \citet{Feigelson2005,Getman2005}), stratified in 3 stellar mass bins as in \citet{Kuhn2019}. \label{fig:XLF}}
-\end{figure}
-\begin{figure}
-    \includegraphics[width=\columnwidth]{Fig3}
-    \caption{Histogram of the X-ray luminosity density distribution in the XEUV population synthesis, where the KDE is overplotted with a dark blue solid line and the median value of 29.4 is marked with a dotted dashed black line. \label{fig:Lx}}
-\end{figure}
+\citet{Kuhn2019} took a subsample of the Chandra Orion Ultradeep Project (\textsc{COUP}, \citet{Feigelson2005,Getman2005}) and stratified it in 3 stellar mass bins using the \citet{Baraffe1998} evolutionary models. From this sample one can derive a X-ray luminosity function (XLF) as a function of stellar mass.
+%, as shown in Figure~\ref{fig:XLF}, from which one can see the increase in the median X-ray luminosity as a function of stellar mass as well as the increase spreading for lower stellar masses.
+We then calculated the median stellar mass for the three stellar mass bins 
+%in Figure~\ref{fig:XLF} 
+given the adopted IMF, and shifted the XLF distribution to match the given value of the stellar mass. We sampled then the X-ray luminosity given the probability density corrected for the stellar mass and obtained the X-ray luminosity distribution shown in Figure~\ref{fig:hist} (panel b) from the 10,000 sampled stellar masses, with a median value of $10^{29.4}$ erg s$^{-1}$ and a spread over 4 orders of magnitude.
+%\begin{figure}
+%    \includegraphics[width=\columnwidth]{Fig2}
+%    \caption{X-ray luminosity function for a representative sample of generic young stellar objects sample of pre-main-sequence stars detected in the Chandra Orion Ultradeep Project (\textsc{COUP}; \citet{Feigelson2005,Getman2005}), stratified in 3 stellar mass bins as in \citet{Kuhn2019}. \label{fig:XLF}}
+%\end{figure}
+%\begin{figure}
+%    \includegraphics[width=\columnwidth]{Fig3}
+%    \caption{Histogram of the X-ray luminosity density distribution in the XEUV population synthesis, where the KDE is overplotted with a dark blue solid line and the median value of 29.4 is marked with a dotted dashed black line. \label{fig:Lx}}
+%\end{figure}
 
 The EUV rates are shown to scale with the ratio of incoming ionising flux. However, there is no clear evidence on the origin of the EUV flux. Assuming that the EUV flux has the same origin as the X-ray flux we can then adopt the same scaling relation as eq.~\ref{eq:LxMstar}
 \begin{equation} \label{eq:PhiEUVMstar}
     \log_{10}(\Phi_{EUV}) = 1.54 \log_{10}(M_\star) + 42 \,
 \end{equation}
-and adopt a small dispersion around the mean value for each stellar mass of 0.25 dex, as shown in Figure~\ref{fig:phiEUV}, which gives a range of ionizing flux from $10^{40} s^{-1}$ to $10^{42.5} s^{-1}$ and a median value of $10^{41.2} s^{-1}$.
-\begin{figure}
-    \includegraphics[width=\columnwidth]{Fig4}
-    \caption{Histogram of the ionizing flux density distribution in the EUV population synthesis, where the KDE is overplotted with a dark blue solid line and the median value of 41.2 is marked with a dotted dashed black line. \label{fig:phiEUV}}
-\end{figure}
+and adopt a small dispersion around the mean value for each stellar mass of 0.25 dex, as shown in Figure~\ref{fig:hist} (panel c), which gives a range of ionizing flux from $10^{40} s^{-1}$ to $10^{42.5} s^{-1}$ and a median value of $10^{41.2} s^{-1}$.
+%\begin{figure}
+%    \includegraphics[width=\columnwidth]{Fig4}
+%    \caption{Histogram of the ionizing flux density distribution in the EUV population synthesis, where the KDE is overplotted with a dark blue solid line and the median value of 41.2 is marked with a dotted dashed black line. \label{fig:phiEUV}}
+%\end{figure}
 
 We constrained the disc properties in order to match the observed mean disc lifetime of 2-3 Myr \citep[see e.g.][]{Ribas2014}. For the EUV profile we sampled the viscous $\alpha$ and scaling radius $R_1$ for disc masses ranging from $0.1$ to $0.01 M_\star$ for a typical star with median values from our distribution ($M_\star = 0.3 M_\odot$, $\Phi_\mathrm{EUV} = 10^{41.2}$ s$^{-1}$) and then we selected only the ones that were giving a correct disc life-time and obtained a best linear fit given by:
-\begin{equation}
+\begin{equation}\label{eq:r1_alpha}
     R_1 = 60.4 \alpha + 3009.7 M_d [M_\star] + 226.6 \\\text{[au]} \,.
 \end{equation}
-We then sampled the whole stellar mass range and obtained the full sampling of the parameter space shown in Figure~\ref{fig:param_euv}.
-\begin{figure*}
-    \includegraphics[width=0.92\textwidth]{Fig5}
-    \caption{KDE plot of the alpha - disc mass (left) and alpha-r1 (right) parameters that were adopted in the EUV population synthesis in order to have a disc life-time compatible with the observationally derived one. \label{fig:param_euv}}
-\end{figure*}
+We then sampled the whole stellar mass range and obtained the full sampling of the parameter space.
+%shown in Figure~\ref{fig:param_euv}.
+%\begin{figure*}
+%    \includegraphics[width=0.92\textwidth]{Fig5}
+%    \caption{KDE plot of the alpha - disc mass (left) and alpha-r1 (right) parameters that were adopted in the EUV population synthesis in order to have a disc life-time compatible with the observationally derived one. \label{fig:param_euv}}
+%\end{figure*}
 For the XEUV profile we realized that the disc evolution was primarily driven by the internal photoevaporation rather than the disc properties, thus we chose to sample uniformly the parameter space for the disc properties and fix only the disc mass to $0.1 M_\star$ as this is a reasonable value of the initial disc mass when the disc self-gravity stops being the driver of disc evolution and the approximation of a viscously evolving disc is reasonable. We summarize the parameter space probed in Table~\ref{tab:popsynthtable}.
 \begin{table*}
 	\centering
@@ -297,8 +302,8 @@ For the XEUV profile we realized that the disc evolution was primarily driven by
 		  name & viscosity & r1 & disc mass & stellar mass & stellar flux \\
         & $\log_{10}(\alpha)$ & au & $M_\star$ & $M_\odot$ & $(\Phi_{EUV},\ L_X)$\\
 		\hline
-		  EUV & Fig.~\ref{fig:param_euv} & Fig.~\ref{fig:param_euv} & Fig.~\ref{fig:param_euv} & Fig.~\ref{fig:stellar_masses} & Fig.~\ref{fig:phiEUV}\\
-		XEUV & [-4, -2] & [10, 100] & 0.1 & Fig.~\ref{fig:stellar_masses} & Fig.~\ref{fig:Lx}\\
+		  EUV & eq.~\ref{eq:r1_alpha} & eq.~\ref{eq:r1_alpha} & eq.~\ref{eq:r1_alpha} & Fig.~\ref{fig:hist} (panel a) & Fig.~\ref{fig:hist} (panel c)\\
+		XEUV & [-4, -2] & [10, 100] & 0.1 & Fig.~\ref{fig:hist} (panel a) & Fig.~\ref{fig:hist} (panel b)\\
 		%3 & 5 & 7 & 9\\
 		\hline
 	\end{tabular}
@@ -307,15 +312,16 @@ For the XEUV profile we realized that the disc evolution was primarily driven by
 \section{Results}\label{sec:results}
 
 Figure~\ref{fig:mdot_age} shows the accretion rates as a function of time for a population synthesis of 10,000 discs sampled as described in the previous section.
-Overplotted with blue dots of variable size (based on their stellar mass) is the population of low accretors from \citet{Thanathibodee2023}, and the observational limit of the He I $\lambda10830$ marked with a black dashed line at $10^{-11}$ M$_\odot$ yr$^{-1}$.
-One can immediately see that while the XEUV profile catches all the observed data points in the region with high density ($> 10^{-2}$), while the EUV cannot explain the data for the older star-forming regions (Orion OB1a and Upper Sco). Furthermore the observational data points lie in the upper region of the distribution, even though they are a sample of the low-accretors population. This means that the bulk of the discs in the studied star forming regions covers a region not explained by the EUV photoevaporation profiles.
+Overplotted with dots of variable size (based on their stellar mass) is the population of low accretors from \citet{Thanathibodee2023}, and the observational limit of the He I $\lambda10830$ marked with a black dashed line at $10^{-11}$ M$_\odot$ yr$^{-1}$.
+One can immediately see that while the XEUV profile catches all the observed data points in the region with high density ($> 10^{-2}$), the EUV cannot explain the data for the older star-forming regions (Orion OB1a and Upper Sco). Furthermore the observational data points lie in the upper region of the distribution, even though they are a sample of the low-accretors population. This means that the bulk of the discs in the studied star forming regions covers a region not explained by the EUV photoevaporation profiles.
 \begin{figure*}
-    \includegraphics[width=0.92\textwidth]{mdot_age_comparison}
-    \caption{Synthetic populations showing the accretion rates as a function of age. The colors show the probability of finding an object of a given age accreting at a given rate (see text for details). Left panel: Discs are dispersed by EUV photoevaporation; right panel: discs are dispersed by X-ray photoevaporation. The low-accretors population is overplotted with blue dots with variable size increasing by the stellar mass.
+    \includegraphics[width=0.92\textwidth]{Fig6}
+    \caption{Synthetic populations showing the accretion rates as a function of age. The color mapping shows the probability of finding an object of a given age accreting at a given accretion rate (see text for details). Left panel: discs are dispersed by EUV photoevaporation; right panel: discs are dispersed by X-ray photoevaporation. The low-accretors population is overplotted with dots with variable size increasing by their stellar mass.
     \label{fig:mdot_age}}
 \end{figure*}
 
-Another way to show the results, and avoid the errors related to the age determination of star forming regions is to plot the accretion rates as a function of the star forming region disc fractions (see Figure~\ref{fig:mdot_frac}). In a similar way here the data points for the low-accretors lie all in the region with low probability density or not explained by the current EUV models (left panel). The situation is significantly different looking at the XEUV population (right panel) where the data points sit in the bulk of the distribution, with small mass stars (small dots) covering the lower part of the high density distribution and the bigger stars the top part. This is expected from the observationally derived relation between accretion rate and stellar masses, that shows a sharp increase of the accretion rate as a function of stellar mass with a broken power law \citep{Alcala2017}.
+%Another way to show the results, and avoid the errors related to the %age determination of star forming regions is to plot the accretion rates as a function of the star forming region disc fractions (see Figure~\ref{fig:mdot_frac}). In a similar way here the data points for the low-accretors lie all in the region with low probability density or not explained by the current EUV models (left panel). The situation is significantly different looking at the XEUV population (right panel) where the data points sit in the bulk of the distribution.
+Small mass stars (small dots) cover the lower part of the high density distribution while bigger stars the top part. This is expected from the observationally derived relation between accretion rate and stellar masses, that shows a sharp increase of the accretion rate as a function of stellar mass with a broken power law \citep{Alcala2017}.
 
 %\begin{table*}
 %	\centering
@@ -361,34 +367,29 @@ Another way to show the results, and avoid the errors related to the age determi
 %		\hline
 %	\end{tabular}
 %\end{table*}
-\begin{figure*}
-    \includegraphics[width=0.92\textwidth]{mdot_frac_comparison}
-    \caption{Synthetic populations showing the accretion rates as a function of disc fraction. The colors show the probability of finding a disc of a given accretion rate in a star forming region with a given disc fraction (see text for details). Left panel: Discs are dispersed by EUV photoevaporation; right panel: discs are dispersed by X-ray photoevaporation. The low-accretors population is overplotted with blue dots with variable size increasing by the stellar mass.
-    \label{fig:mdot_frac}}
-\end{figure*}
+%\begin{figure*}
+%    \includegraphics[width=0.92\textwidth]{mdot_frac_comparison}
+%    \caption{Synthetic populations showing the accretion rates as a function of disc fraction. The colors show the probability of finding a disc of a given accretion rate in a star forming region with a given disc fraction (see text for details). Left panel: Discs are dispersed by EUV photoevaporation; right panel: discs are dispersed by X-ray photoevaporation. The low-accretors population is overplotted with blue dots with variable size increasing by the stellar mass.
+%    \label{fig:mdot_frac}}
+%\end{figure*}
 
 We plotted in Figure~\ref{fig:hist_mdot} the histogram of the accretion rate distribution for the EUV (in blue) and XEUV (in green) populations. We overplotted as well the median accretion rates in dotted-dashed blue and green line respectively, and the median accretion rate for the observed population of low-accretors with a dotted-dashed black line. From this one can directly visualize how the median of the XEUV population and the observed low-accretors is very similar, while it is close to the high-accretor wing of the EUV distribution.
 \begin{figure}
-    \includegraphics[width=\columnwidth]{hist_mdot.png}
+    \includegraphics[width=\columnwidth]{Fig7}
     \caption{Histogram of the accretion rate density distribution in the EUV (blue) and XEUV (green) population synthesis. The KDE is overplotted with a blue and green solid line for the EUV and XEUV distributions respectively, and the median values are plotted with dotted-dashed lines. For direct comparison the median accretion rate of the low-accretors population is plotted with a black dotted-dashed line.\label{fig:hist_mdot}}
 \end{figure}
 
 We compared finally the distribution of disc fractions as a function of age, calculated as the time at which the accretion rate drops below $10^{-11}$ M$_\odot$ yr$^{-1}$ in our population synthesis with the observed distribution of disc fraction. As expected the EUV distribution fits perfectly, as we choose the parameter space in order to fit it for the median stellar mass and EUV ionizing field. The XEUV distribution is also very accurate in describing the observed star forming region population with the only constraint of an initial disc mass of $0.1$ M$_\star$.
-\begin{figure}
-    \includegraphics[width=0.92\columnwidth]{disk_lifetime.png}
-    \caption{Disc fraction as a function of disc lifetime for the XEUV (top panel) and EUV (bottom panel) synthetic populations compared with the observational data from \citet{Mamajek2009}, divided in 3 stellar mass bins. The median disc lifetime are plotted with dashed vertical lines. The median disc life-time increases with stellar mass for the EUV models, while it decreases for the XEUV models. \label{fig:frac_time}}
-\end{figure}
+
 %For the case of X-ray photoevaporation the probability of finding an object at a given accretion rates changes as a function of age of the population. However for objects older than approximately 1~Myr it is clearly not improbable to find objects at rates of order $10^{-10}M_{\odot}/yr$. In particular for objects older than about 5 Myr the probability distribution peaks indeed at these values. For lower accretion rates the probabilty decreases sharply for all ages, indicating that the lowest accretors of a population of discs being dissipated by X-ray photoevaporation is indeed to be found accreting at rates of order $10^{-10} M_{\odot}/yr$ as observed by T22. 
 %This can be clearly seen in Figure?? where the probability of an object accreting at a given rate is plotted for a few typical ages. {\color{red} make this figure}. 
 
 
 %For the case of EUV photoevaporation.... 
 
-%For the case of FUV photoevaporation.... 
-
 \subsection{Mass dependent results}
 
-The results shown in the previous section assume a well-sampled IMF, which implies that objects at the lower end of the mass range are the most abundant. However the sample of low accretors of \citet{Thanathibodee2023} includes only $24$ objects with masses ranging between $0.1$ and $1.39$ M$_\odot$. The majority of objects have masses between $0.5$ and $0.6$ M$_\odot$, resulting in a significant different stellar mass function with respect to the adopted IMF, as shown in Figure~\ref{fig:mstar_comparison}.
+The results shown in the previous section assume a well-sampled IMF, which implies that objects at the lower end of the mass range are the most abundant. However the sample of low accretors of \citet{Thanathibodee2023} includes only $24$ objects with masses ranging between $0.1$ and $1.39$ M$_\odot$. The majority of objects have masses between $0.5$ and $0.6$ M$_\odot$, resulting in a significant different stellar mass function with respect to the adopted IMF. %, as shown in Figure~\ref{fig:mstar_comparison}.
 
 The accretion rate values reported by T22 do not show any obvious correlation with the object mass. 
 In Figures?? to??? we show the accretion rate probabilities for our populations when we restrict the mass ranges to low (0.1-0.3), intermediate (0.3-0.6), high (0.7-0.9). 
@@ -396,9 +397,14 @@ In Figures?? to??? we show the accretion rate probabilities for our populations 
 
 We find.... 
 \begin{figure}
-    \includegraphics[width=0.92\columnwidth]{Mstar_comparison.png}
-    \caption{Stellar mass distribution of the low-accretor population in \citet{Thanathibodee2023} with overplotted KDE in a solid blue line, compared with the IMF adopted in this work shown with a red solid line. The median values of the two distributions are shown with blue and red dotted-dashed line, respectively.  \label{fig:mstar_comparison}}
+    \includegraphics[width=0.92\columnwidth]{Fig8}
+    \caption{Disc fraction as a function of disc lifetime for the XEUV (top panel) and EUV (bottom panel) synthetic populations compared with the observational data from \citet{Mamajek2009}, divided in 3 stellar mass bins. The median disc lifetime are plotted with dashed vertical lines. The median disc life-time increases with stellar mass for the EUV models, while it decreases for the XEUV models. \label{fig:frac_time}}
 \end{figure}
+
+%\begin{figure}
+%    \includegraphics[width=0.92\columnwidth]{Mstar_comparison.png}
+%    \caption{Stellar mass distribution of the low-accretor population in \citet{Thanathibodee2023} with overplotted KDE in a solid blue line, compared with the IMF adopted in this work shown with a red solid line. The median values of the two distributions are shown with blue and red dotted-dashed line, respectively.  \label{fig:mstar_comparison}}
+%\end{figure}
 
 \subsection{Low-accretors variability}
 
