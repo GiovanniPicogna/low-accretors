@@ -52,7 +52,7 @@ data_euv = pd.DataFrame(
     }
 )
 
-data_euv = mask_accretion(data_euv, 1.e-13)
+data_euv = mask_accretion(data_euv, 1.e-12)
 
 path = data_path+"pop_XEUV/"
 
@@ -74,7 +74,7 @@ data_xeuv = pd.DataFrame(
     }
 )
 
-data_xeuv = mask_accretion(data_xeuv, 1.e-13)
+data_xeuv = mask_accretion(data_xeuv, 1.e-12)
 
 low_acc_data = pd.read_csv(data_path+'low_accretors.dat', sep=' ')
 low_acc_data["Mdot"] *= 1.e-10
@@ -85,15 +85,16 @@ z = sns.histplot(data=data_euv, x="age", y="mdot_acc", binwidth=(0.1*20./6., 0.1
                  cbar_kws={'label': 'density'}, kde=True, ax=ax[0])
 ax[0].errorbar(x=low_acc_data["t"], y=low_acc_data["Mdot"],
                xerr=low_acc_data["dt"], yerr=low_acc_data["dMdot"],
-               fmt='none', barsabove=False, alpha=0.5)
+               fmt='none', barsabove=False, color='black', alpha=0.5)
 sns.scatterplot(data=low_acc_data, x="t", y="Mdot", hue="Mstar", 
-                size="Mstar", ax=ax[0])
+                size="Mstar", ax=ax[0], zorder=5)
+ax[0].set_yscale('log')
 ax[0].hlines(1.e-11, 0, 20, 'k',ls='--')
-z.set_ylabel('$\log_{10}(\dot{M}_\mathrm{acc}/M_{\odot}\,\mathrm{yr}^{-1}$)')
-z.set_xlabel('age / Myr')
-z.set_xlim(0., 20.)
-z.set_ylim(1e-13, 1e-7)
-z.set_title("EUV")
+ax[0].set_ylabel('$\log_{10}(\dot{M}_\mathrm{acc}/M_{\odot}\,\mathrm{yr}^{-1}$)')
+ax[0].set_xlabel('age / Myr')
+ax[0].set_xlim(0., 20.)
+ax[0].set_ylim(1e-12, 1e-7)
+ax[0].set_title("EUV")
 
 z1 = sns.histplot(data=data_xeuv, x="age", y="mdot_acc",
                   binwidth=(0.1*20./6., 0.1), cbar=True, stat='density',
@@ -101,17 +102,18 @@ z1 = sns.histplot(data=data_xeuv, x="age", y="mdot_acc",
                   vmin=None, vmax=None, log_scale=(False, True),
                   cbar_kws={'label': 'density'}, cbar_ax=cbar_ax,
                   kde=True, ax=ax[1])
+ax[1].set_yscale('log')
 ax[1].errorbar(x=low_acc_data["t"], y=low_acc_data["Mdot"],
                xerr=low_acc_data["dt"], yerr=low_acc_data["dMdot"],
-               fmt='none', barsabove=False, alpha=0.5)
+               fmt='none', barsabove=False, color='black', alpha=0.5)
 sns.scatterplot(data=low_acc_data, x="t", y="Mdot", hue="Mstar", 
-                size="Mstar", legend=False, ax=ax[1])
+                size="Mstar", legend=False, ax=ax[1], zorder=5)
 
 ax[1].hlines(1.e-11, 0, 20, 'k', ls='--')
-z1.set_ylabel('$\log_{10}(\dot{M}_\mathrm{acc}/M_{\odot}\,\mathrm{yr}^{-1}$)')
-z1.set_xlabel('age / Myr')
-z1.set_xlim(0., 20.)
-z1.set_ylim(1e-13, 1e-7)
-z1.set_title("XEUV")
+ax[1].set_ylabel('$\log_{10}(\dot{M}_\mathrm{acc}/M_{\odot}\,\mathrm{yr}^{-1}$)')
+ax[1].set_xlabel('age / Myr')
+ax[1].set_xlim(0., 20.)
+ax[1].set_ylim(1e-12, 1e-7)
+ax[1].set_title("XEUV")
 
 fig.savefig(fig_path+'Fig6.png', format='png', dpi=400)

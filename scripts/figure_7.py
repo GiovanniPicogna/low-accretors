@@ -48,7 +48,7 @@ data_euv = pd.DataFrame(
     }
 )
 
-data_euv = mask_accretion(data_euv, 1.e-13)
+data_euv = mask_accretion(data_euv, 1.e-12)
 
 path = data_path+"pop_XEUV/"
 
@@ -70,7 +70,7 @@ data_xeuv = pd.DataFrame(
     }
 )
 
-data_xeuv = mask_accretion(data_xeuv, 1.e-13)
+data_xeuv = mask_accretion(data_xeuv, 1.e-12)
 
 data = pd.concat([data_euv, data_xeuv])
 data.reset_index(drop=True, inplace=True)
@@ -80,14 +80,14 @@ low_acc_data["Mdot"] *= 1.e-10
 low_acc_data["dMdot"] *= 1.e-10
 
 sns.histplot(data, x='mdot_acc', hue="profile", stat='density', log_scale=True,
-             bins=30, kde=True)
+             bins=20, kde=True)
 plt.vlines(np.median(data_euv["mdot_acc"][~np.isnan(data_euv["mdot_acc"])]),
-           0, 0.32, ls='-.', color=sns.color_palette("pastel")[0])
+           0, 0.32, ls='-.', color='lightskyblue')
 plt.vlines(np.median(data_xeuv["mdot_acc"][~np.isnan(data_xeuv["mdot_acc"])]),
-           0, 0.32, ls='-.', color=sns.color_palette("pastel")[1])
+           0, 0.32, ls='-.', color='orange')
 plt.vlines(np.median(low_acc_data["Mdot"]), 0, 0.32, ls='-.', color='k')
 plt.xlabel('$\\log(\\dot{M}_\\mathrm{acc}/M_{\\odot}\\,\\mathrm{yr}^{-1}$)')
-plt.xlim(1e-13, 3e-7)
+plt.xlim(1e-12, 3e-7)
 
 fig.tight_layout()
 
