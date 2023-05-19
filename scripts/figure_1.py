@@ -7,24 +7,23 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import scienceplots
-from astropy import constants as const
 from scipy import interpolate as interpolate
 import seaborn as sns
+import pandas as pd
 from lib import Phi_Mstar, IMF
 
 plt.style.use('science')
 sns.set_palette("pastel")
 
-plt.rc('font', size=18.)
-plt.rc('text', usetex=True)
-plt.rc('xtick', labelsize=18.)
-plt.rc('ytick', labelsize=18.)
-plt.rc('axes', labelsize=18.)
-plt.rc('lines', linewidth=3.)
+plt.rc('font', size=8.)
+plt.rc('xtick', labelsize=8.)
+plt.rc('ytick', labelsize=8.)
+plt.rc('axes', labelsize=8.)
+plt.rc('legend', fontsize=4.5)
 
 plt.rcParams["errorbar.capsize"]
 
-fig, ax = plt.subplots(1, 3, squeeze=True, figsize=[25.5, 8.5])
+fig, ax = plt.subplots(1, 3, figsize=[7.03058, 2.])
 
 data_path = "../data/"
 fig_path = "../figures/"
@@ -80,26 +79,29 @@ Mstar_PE = np.array(Mstar_PE)
 Phi_PE = np.array(Phi_PE)
 Lx_PE = np.array(Lx_PE)
 
-sns.histplot(x=Mstar_PE, bins=15, stat='density', kde=True, ax=ax[0])
+sns.histplot(x=Mstar_PE, binwidth=0.05, stat='density', kde=True, ax=ax[0])
 ax[0].plot(IMF_Kroupa[:, 0], IMF_Kroupa[:, 1]/np.max(IMF_Kroupa[:, 1]), 'r--')
 ax[0].set_xlabel(r'$M_\star / M_\odot$')
 ax[0].set_xlim(0.08, 1.1)
 ax[0].set_ylabel('density')
 ax[0].vlines(np.median(Mstar_PE), 0, 1.5, ls='-.', color='r')
-ax[0].text(0.9, 0.95, '(a)', transform=ax[0].transAxes, va='top')
+ax[0].text(0.85, 0.95, '(a)', transform=ax[0].transAxes, va='top')
 
 sns.histplot(x=Lx_PE, binwidth=0.25, stat='density', kde=True, ax=ax[1])
 ax[1].set_xlabel(r'$\\log_{10}(L_X / erg\, s^{-1})$')
-ax[1].set_ylabel('density')
+ax[1].set_ylabel('')
 ax[1].vlines(np.median(Lx_PE), 0, 0.44, ls='-.', color='r')
-ax[1].text(0.9, 0.95, '(b)', transform=ax[1].transAxes, va='top')
+ax[1].text(0.85, 0.95, '(b)', transform=ax[1].transAxes, va='top')
 
 sns.histplot(x=Phi_PE[:, 0], binwidth=0.2, stat='density', kde=True, ax=ax[2])
 ax[2].set_xlabel(r'$\\log_{10}(\Phi_\mathrm{EUV} / s^{-1})$')
-ax[2].set_ylabel('density')
+ax[2].set_ylabel('')
 ax[2].set_xlim(39.4, 43)
 ax[2].vlines(np.median(Phi_PE[:, 0]), 0, 0.6, ls='-.', color='r')
-ax[2].text(0.9, 0.95, '(c)', transform=ax[2].transAxes, va='top')
+ax[2].text(0.85, 0.95, '(c)', transform=ax[2].transAxes, va='top')
 
+low_acc = pd.read_csv(data_path+'low_accretors.dat', sep=' ', comment="#")
+low_acc["Mdot"] *= 1.e-10
+sns.histplot(x=low_acc["M$_\star$"], stat='density', binwidth=0.05, kde=True, ax=ax[0])
 
 fig.savefig(fig_path+'Fig1.png', format='png', dpi=400)

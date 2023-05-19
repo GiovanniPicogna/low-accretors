@@ -1,4 +1,4 @@
-name group t dt Mstar Mdot dMdot f df
+name group t dt M$_\star$ Mdot dMdot f df
 CVSO_40 OriOB1a 10.8 2.9 0.53 2.0 0.0 6 1.6
 CVSO_298 OriOB1a 10.8 2.9 0.56 1.3 0.5 6 1.6
 CVSO_156 OriOB1b 5.0 2.1 0.34 1.4 0.4 12 2.666

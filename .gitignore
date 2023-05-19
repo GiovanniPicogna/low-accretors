@@ -46,6 +46,7 @@ latex.out/
 **/__pycache__/
 data/
 **/DS_Store/
+**/.vscode/
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
