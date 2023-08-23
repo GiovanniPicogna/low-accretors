@@ -71,28 +71,6 @@ data_xeuv = pd.DataFrame(
 
 data_xeuv = mask_accretion(data_xeuv, 1.e-12)
 
-path = data_path+"pop_FUV/"
-
-Macc_arr_fuv = np.loadtxt(path+"Macc.dat")
-age_arr_fuv = np.loadtxt(path+"age.dat")
-
-arr_stacked_fuv = np.array([age_arr_fuv/1e6, Macc_arr_fuv]).T
-
-mdot_acc_fuv = arr_stacked_fuv[:, 1]
-age_fuv = arr_stacked_fuv[:, 0]
-
-profile_fuv = np.array(["FUV"] * np.size(arr_stacked_fuv[:, 1]))
-
-data_fuv = pd.DataFrame(
-    {
-        "mdot_acc": mdot_acc_fuv,
-        "age": age_fuv,
-        "profile": profile_fuv
-    }
-)
-
-data_fuv = mask_accretion(data_fuv, 1.e-12)
-
 path = data_path+"pop_EUV/03Msun/"
 
 Macc_arr_euv03 = np.loadtxt(path+"Macc.dat")
@@ -136,28 +114,6 @@ data_xeuv_03Msun = pd.DataFrame(
 )
 
 data_xeuv_03Msun = mask_accretion(data_xeuv_03Msun, 1.e-12)
-
-path = data_path+"pop_FUV/03Msun/"
-
-Macc_arr = np.loadtxt(path+"Macc.dat")
-age_arr = np.loadtxt(path+"age.dat")
-
-arr_stacked = np.array([age_arr/1e6, Macc_arr]).T
-
-mdot_acc = arr_stacked[:, 1]
-age = arr_stacked[:, 0]
-
-profile = np.array(["FUV"] * np.size(arr_stacked[:, 1]))
-
-data_fuv_03Msun = pd.DataFrame(
-    {
-        "mdot_acc": mdot_acc,
-        "age": age,
-        "profile": profile
-    }
-)
-
-data_fuv_03Msun = mask_accretion(data_fuv_03Msun, 1.e-12)
 
 path = data_path+"pop_EUV/06Msun/"
 
@@ -203,28 +159,6 @@ data_xeuv_06Msun = pd.DataFrame(
 
 data_xeuv_06Msun = mask_accretion(data_xeuv_06Msun, 1.e-12)
 
-path = data_path+"pop_FUV/06Msun/"
-
-Macc_arr = np.loadtxt(path+"Macc.dat")
-age_arr = np.loadtxt(path+"age.dat")
-
-arr_stacked = np.array([age_arr/1e6, Macc_arr]).T
-
-mdot_acc = arr_stacked[:, 1]
-age = arr_stacked[:, 0]
-
-profile = np.array(["FUV"] * np.size(arr_stacked[:, 1]))
-
-data_fuv_06Msun = pd.DataFrame(
-    {
-        "mdot_acc": mdot_acc,
-        "age": age,
-        "profile": profile
-    }
-)
-
-data_fuv_06Msun = mask_accretion(data_fuv_06Msun, 1.e-12)
-
 path = data_path+"pop_EUV/1Msun/"
 
 Macc_arr = np.loadtxt(path+"Macc.dat")
@@ -269,36 +203,14 @@ data_xeuv_1Msun = pd.DataFrame(
 
 data_xeuv_1Msun = mask_accretion(data_xeuv_1Msun, 1.e-12)
 
-path = data_path+"pop_FUV/1Msun/"
-
-Macc_arr = np.loadtxt(path+"Macc.dat")
-age_arr = np.loadtxt(path+"age.dat")
-
-arr_stacked = np.array([age_arr/1e6, Macc_arr]).T
-
-mdot_acc = arr_stacked[:, 1]
-age = arr_stacked[:, 0]
-
-profile = np.array(["FUV"] * np.size(arr_stacked[:, 1]))
-
-data_fuv_1Msun = pd.DataFrame(
-    {
-        "mdot_acc": mdot_acc,
-        "age": age,
-        "profile": profile
-    }
-)
-
-data_fuv_1Msun = mask_accretion(data_fuv_1Msun, 1.e-12)
-
-data_euv = pd.concat([data_euv_06Msun, data_euv_1Msun])
-data_euv.reset_index(drop=True, inplace=True)
-data_xeuv = pd.concat([data_xeuv_06Msun, data_xeuv_1Msun])
-data_xeuv.reset_index(drop=True, inplace=True)
-data_fuv = pd.concat([data_fuv_06Msun, data_fuv_1Msun])
-data_fuv.reset_index(drop=True, inplace=True)
-data = pd.concat([data_euv, data_xeuv, data_fuv])
+data = pd.concat([data_euv, data_xeuv])
 data.reset_index(drop=True, inplace=True)
+data_03 = pd.concat([data_euv_03Msun, data_xeuv_03Msun])
+data_03.reset_index(drop=True, inplace=True)
+data_06 = pd.concat([data_euv_06Msun, data_xeuv_06Msun])
+data_06.reset_index(drop=True, inplace=True)
+data_1 = pd.concat([data_euv_1Msun, data_xeuv_1Msun])
+data_1.reset_index(drop=True, inplace=True)
 
 low_acc_data = pd.read_csv(data_path+'low_accretors.dat', sep=' ')
 low_acc_data["Mdot"] *= 1.e-10
@@ -311,12 +223,10 @@ low_acc_data_1 = low_acc_data[low_acc_data["M$_\star$"] > 0.6]
 sns.histplot(data, x='mdot_acc', hue="profile", stat='density', log_scale=True,
              bins=20, ax=ax[0], kde=True)
 ax[0].vlines(np.median(data_euv["mdot_acc"][~np.isnan(data_euv["mdot_acc"])]),
-             0, 0.32, ls='-.', color='lightskyblue')
+             0, 0.32, ls='-.', linewidth=2., color='lightskyblue')
 ax[0].vlines(np.median(data_xeuv["mdot_acc"][~np.isnan(data_xeuv["mdot_acc"])]),
-             0, 0.32, ls='-.', color='orange')
-ax[0].vlines(np.median(data_fuv["mdot_acc"][~np.isnan(data_fuv["mdot_acc"])]),
-             0, 0.32, ls='-.', color='red')
-ax[0].vlines(np.median(low_acc_data["Mdot"]), 0, 0.32, ls='-.', color='k')
+             0, 0.32, ls='-.', linewidth=2., color='orange')
+ax[0].vlines(np.median(low_acc_data["Mdot"]), 0, 0.32, ls='-.', linewidth=2., color='k')
 dataAlexander = np.loadtxt('/Users/giovanni/Documents/Papers/low-accretors/data/Alexander23edges.dat')
 binwidth = dataAlexander[1:,0]-dataAlexander[:-1,0]
 #plt.xscale("log")
@@ -331,10 +241,10 @@ ax[0].set_title("Full sample")
 sns.histplot(data_03, x='mdot_acc', hue="profile", stat='density', log_scale=True,
              bins=20, ax=ax[1], kde=True)
 ax[1].vlines(np.median(data_euv_03Msun["mdot_acc"][~np.isnan(data_euv_03Msun["mdot_acc"])]),
-             0, 0.32, ls='-.', color='lightskyblue')
+             0, 0.32, ls='-.', linewidth=2., color='lightskyblue')
 ax[1].vlines(np.median(data_xeuv_03Msun["mdot_acc"][~np.isnan(data_xeuv_03Msun["mdot_acc"])]),
-             0, 0.32, ls='-.', color='orange')
-ax[1].vlines(np.median(low_acc_data_03["Mdot"]), 0, 0.32, ls='-.', color='k')
+             0, 0.32, ls='-.', linewidth=2., color='orange')
+ax[1].vlines(np.median(low_acc_data_03["Mdot"]), 0, 0.32, ls='-.', linewidth=2., color='k')
 ax[1].set_xlabel('$\\log(\\dot{M}_\\mathrm{acc}/M_{\\odot}\\,\\mathrm{yr}^{-1}$)')
 ax[1].set_ylabel('')
 ax[1].set_xlim(1e-12, 3e-7)
@@ -344,10 +254,10 @@ ax[1].set_title("$M_\\star \\leq 0.3 M_\\odot$")
 sns.histplot(data_06, x='mdot_acc', hue="profile", stat='density', log_scale=True,
              bins=20, ax=ax[2], kde=True)
 ax[2].vlines(np.median(data_euv_06Msun["mdot_acc"][~np.isnan(data_euv_06Msun["mdot_acc"])]),
-             0, 0.5, ls='-.', color='lightskyblue')
+             0, 0.5, ls='-.', linewidth=2., color='lightskyblue')
 ax[2].vlines(np.median(data_xeuv_06Msun["mdot_acc"][~np.isnan(data_xeuv_06Msun["mdot_acc"])]),
-             0, 0.5, ls='-.', color='orange')
-ax[2].vlines(np.median(low_acc_data_06["Mdot"]), 0, 0.5, ls='-.', color='k')
+             0, 0.5, ls='-.', linewidth=2., color='orange')
+ax[2].vlines(np.median(low_acc_data_06["Mdot"]), 0, 0.5, ls='-.', linewidth=2., color='k')
 ax[2].set_xlabel('$\\log(\\dot{M}_\\mathrm{acc}/M_{\\odot}\\,\\mathrm{yr}^{-1}$)')
 ax[2].set_ylabel('')
 ax[2].set_xlim(1e-12, 3e-7)
@@ -357,10 +267,10 @@ ax[2].set_title("$0.3 < M_\\star \\leq 0.6 M_\\odot$")
 sns.histplot(data_1, x='mdot_acc', hue="profile", stat='density', log_scale=True,
              bins=20, ax=ax[3], kde=True)
 ax[3].vlines(np.median(data_euv_1Msun["mdot_acc"][~np.isnan(data_euv_1Msun["mdot_acc"])]),
-             0, 0.65, ls='-.', color='lightskyblue')
+             0, 0.65, ls='-.', linewidth=2., color='lightskyblue')
 ax[3].vlines(np.median(data_xeuv_1Msun["mdot_acc"][~np.isnan(data_xeuv_1Msun["mdot_acc"])]),
-             0, 0.65, ls='-.', color='orange')
-ax[3].vlines(np.median(low_acc_data_1["Mdot"]), 0, 0.65, ls='-.', color='k')
+             0, 0.65, ls='-.', linewidth=2., color='orange')
+ax[3].vlines(np.median(low_acc_data_1["Mdot"]), 0, 0.65, ls='-.', linewidth=2., color='k')
 ax[3].set_xlabel('$\\log(\\dot{M}_\\mathrm{acc}/M_{\\odot}\\,\\mathrm{yr}^{-1}$)')
 ax[3].set_ylabel('')
 ax[3].set_xlim(1e-12, 3e-7)

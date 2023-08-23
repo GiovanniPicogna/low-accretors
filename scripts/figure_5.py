@@ -27,7 +27,7 @@ fig, ax = plt.subplots(1, 2, sharey=True, figsize=[17., 8.5])
 
 data_path = "../data/"
 fig_path = "../figures/"
-path = data_path+"pop_EUV/"
+path = data_path+"pop_FUV/"
 
 r1_arr = np.loadtxt(path+"r1.dat")
 md_arr = np.loadtxt(path+"md.dat")
@@ -53,4 +53,4 @@ ax[1].set_ylim(1.e-4, 1.e-2)
 ax[1].set_xlabel('$R_1$ / au')
 fig.tight_layout()
 
-fig.savefig(fig_path+'Fig5.png', format='png', dpi=400)
+fig.savefig(fig_path+'Fig51.png', format='png', dpi=400)

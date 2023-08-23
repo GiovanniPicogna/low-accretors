@@ -23,7 +23,7 @@ plt.rc('legend', fontsize=8.)
 
 plt.rcParams["errorbar.capsize"]
 
-fig, ax = plt.subplots(2, 1, sharex=True, figsize=[3.37689, 6.])
+fig, ax = plt.subplots(3, 1, sharex=True, figsize=[3.37689, 6.])
 fig.subplots_adjust(left=0.15, wspace=0.075, hspace=0.075)
 
 data_path = "../data/"
@@ -71,6 +71,22 @@ path = data_path+'pop_XEUV/1Msun/'
 data_xeuv_1 = load_data(path, profile_name=profile_name_1, mask=mask,
                         mask_val=mask_val)
 
+path = data_path+'pop_FUV/'
+data_fuv = load_data(path, profile_name=profile_name, mask=mask,
+                     mask_val=mask_val)
+
+path = data_path+'pop_FUV/03Msun/'
+data_fuv_03 = load_data(path, profile_name=profile_name_03, mask=mask,
+                         mask_val=mask_val)
+
+path = data_path+'pop_FUV/06Msun/'
+data_fuv_06 = load_data(path, profile_name=profile_name_06, mask=mask,
+                         mask_val=mask_val)
+
+path = data_path+'pop_FUV/1Msun/'
+data_fuv_1 = load_data(path, profile_name=profile_name_1, mask=mask,
+                        mask_val=mask_val)
+
 ax[0].plot(data_euv["age"], data_euv["disk_fraction"], '.',
            color='black', markersize=2, label=profile_name)
 ax[0].plot(data_euv_03["age"], data_euv_03["disk_fraction"], '.',
@@ -107,7 +123,25 @@ ax[1].vlines(np.median(data_xeuv_06["age"]), 0, 80,
 ax[1].vlines(np.median(data_xeuv_1["age"]), 0, 80,
              color=sns.color_palette("pastel")[2], ls='--')
 
-for j in range(2):
+ax[2].plot(data_fuv["age"], data_fuv["disk_fraction"], '.',
+           markersize=2, color='black', label=profile_name)
+ax[2].plot(data_fuv_03["age"], data_fuv_03["disk_fraction"], '.',
+           markersize=2, label=profile_name_03)
+ax[2].plot(data_fuv_06["age"], data_fuv_06["disk_fraction"], '.',
+           markersize=2, label=profile_name_06)
+ax[2].plot(data_fuv_1["age"], data_fuv_1["disk_fraction"], '.',
+           markersize=2, label=profile_name_1)
+
+ax[2].vlines(np.median(data_fuv["age"]), 0, 80, 
+             color='black', ls='--')
+ax[2].vlines(np.median(data_fuv_03["age"]), 0, 80,
+             color=sns.color_palette("pastel")[0], ls='--')
+ax[2].vlines(np.median(data_fuv_06["age"]), 0, 80,
+             color=sns.color_palette("pastel")[1], ls='--')
+ax[2].vlines(np.median(data_fuv_1["age"]), 0, 80,
+             color=sns.color_palette("pastel")[2], ls='--')
+
+for j in range(3):
     ax[j].errorbar(data_Mamajek[:, 1], data_Mamajek[:, 4],
                    xerr=[data_Mamajek[:, 1]-data_Mamajek[:, 2], data_Mamajek[:, 3]-data_Mamajek[:, 1]],
                    yerr=[data_Mamajek[:, 4]-data_Mamajek[:, 5], data_Mamajek[:, 6]-data_Mamajek[:, 4]],
@@ -120,6 +154,7 @@ for j in range(2):
 
 ax[0].set_ylabel('EUV\ndisk fraction / \\%')
 ax[1].set_ylabel('XEUV\ndisk fraction / \\%')
-ax[1].set_xlabel(r'age / Myr')
+ax[2].set_ylabel('FUV\ndisk fraction / \\%')
+ax[2].set_xlabel(r'age / Myr')
 
-fig.savefig(fig_path+'Fig8.png', format='png', dpi=400)
+fig.savefig(fig_path+'Fig81.png', format='png', dpi=400)

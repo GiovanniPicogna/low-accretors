@@ -28,6 +28,9 @@ fig, ax = plt.subplots(1, 3, figsize=[7.03058, 2.])
 data_path = "../data/"
 fig_path = "../figures/"
 
+low_acc = pd.read_csv(data_path+'low_accretors.dat', sep=' ', comment="#")
+low_acc["Mdot"] *= 1.e-10
+
 data_Mamajek = np.genfromtxt(data_path+'disc_fraction_Mamajek2009.csv', delimiter=',')
 
 f_disc = data_Mamajek[:, 1]/100/0.86  # assume that 14% of discs are formed by binary interactions, see Owen+2011
@@ -79,12 +82,16 @@ Mstar_PE = np.array(Mstar_PE)
 Phi_PE = np.array(Phi_PE)
 Lx_PE = np.array(Lx_PE)
 
-sns.histplot(x=Mstar_PE, binwidth=0.05, stat='density', kde=True, ax=ax[0])
-ax[0].plot(IMF_Kroupa[:, 0], IMF_Kroupa[:, 1]/np.max(IMF_Kroupa[:, 1]), 'r--')
+sns.histplot(x=Mstar_PE, binwidth=0.0666, stat='density', kde=True, label="population synthesis", ax=ax[0])
+sns.histplot(x=low_acc["M$_\star$"], stat='density', binwidth=0.0666, kde=True, label="low accretor sample", ax=ax[0])
+# ax[0].plot(IMF_Kroupa[:, 0], IMF_Kroupa[:, 1]/np.max(IMF_Kroupa[:, 1]), 'r--')
 ax[0].set_xlabel(r'$M_\star / M_\odot$')
 ax[0].set_xlim(0.08, 1.1)
 ax[0].set_ylabel('density')
-ax[0].vlines(np.median(Mstar_PE), 0, 1.5, ls='-.', color='r')
+ax[0].legend(loc="upper center")
+ax[0].vlines(np.median(Mstar_PE), 0, 2.5, ls='--', lw=2.5, color='lightskyblue')
+ax[0].vlines(np.median(low_acc["M$_\star$"]), 0, 2.5, ls='--', lw=2.5, color='orange')
+print(np.median(low_acc["M$_\star$"]))
 ax[0].text(0.85, 0.95, '(a)', transform=ax[0].transAxes, va='top')
 
 sns.histplot(x=Lx_PE, binwidth=0.25, stat='density', kde=True, ax=ax[1])
@@ -99,9 +106,5 @@ ax[2].set_ylabel('')
 ax[2].set_xlim(39.4, 43)
 ax[2].vlines(np.median(Phi_PE[:, 0]), 0, 0.6, ls='-.', color='r')
 ax[2].text(0.85, 0.95, '(c)', transform=ax[2].transAxes, va='top')
-
-low_acc = pd.read_csv(data_path+'low_accretors.dat', sep=' ', comment="#")
-low_acc["Mdot"] *= 1.e-10
-sns.histplot(x=low_acc["M$_\star$"], stat='density', binwidth=0.05, kde=True, ax=ax[0])
 
 fig.savefig(fig_path+'Fig1.png', format='png', dpi=400)
